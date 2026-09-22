@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>WHIEDA · Золотой треугольник · от 750 PV</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --navy:      #0B2545;
+    --royal:     #1E4B8F;
+    --cream:     #F7F4EA;
+    --action:    #E85D04;
+    --action-2:  #FF8C42;
+    --trust:     #2A9D8F;
+    --ink:       #1F2937;
+    --muted:     #6B7280;
+
+    --gold-1: #E8E6D9;
+    --gold-2: #E85D04;
+    --gold-3: #0B2545;
+    --gold-4: #071A33;
+
+    --bg: #F7F4EA;
+    --line: #E1DCC9;
+    --card-bg: #ffffff;
+    --section-bg: #ffffff;
+    --red-1: #C9302C;
+
+    --print-gold-1: #0B2545;
+    --print-gold-2: #071A33;
+    --print-gold-3: #04101f;
+    --print-ink:    #1F2937;
+    --print-line:   #a0a8b3;
+    --print-bg-soft:#eef1e4;
+    --print-bg-hard:#dde3d0;
+  }
+  body.dark-theme {
+    --bg: #071A33; --ink: #ECEFF3; --muted: #a0a8b3;
+    --line: #1B3A5B; --card-bg: #0B2545; --section-bg: #0B2545;
+  }
+  .i { display: inline-block; width: 1.1em; height: 1.1em; vertical-align: -0.15em; flex-shrink: 0; stroke: #E85D04; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', Roboto, -apple-system, 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; padding: 40px 20px; -webkit-font-smoothing: antialiased; transition: background 0.3s, color 0.3s; overflow-x: hidden; }
+  .container { max-width: 1180px; margin: 0 auto; background: var(--section-bg); border-radius: 24px; box-shadow: 0 30px 80px rgba(11,37,69,0.14), 0 4px 16px rgba(11,37,69,0.06); overflow: hidden; transition: background 0.3s; position: relative; z-index: 2; }
+  .theme-toggle { position: fixed; top: 20px; right: 20px; z-index: 100; background: linear-gradient(135deg, var(--action), #b84700); color: #fff; border: none; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; font-size: 20px; box-shadow: 0 8px 24px rgba(232,93,4,0.5); transition: transform 0.2s; display: flex; align-items: center; justify-content: center; }
+  .theme-toggle:hover { transform: scale(1.08); }
+  .theme-toggle .i { stroke: #fff; }
+  .coins-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1; overflow: hidden; opacity: 0.5; }
+  .coin { position: absolute; top: -60px; width: 42px; height: 42px; border-radius: 50%; background: radial-gradient(circle at 32% 28%, #fff0d8 0%, #ffb05a 22%, #E85D04 55%, #9b3d00 100%); box-shadow: 0 0 12px rgba(232,93,4,0.6), inset 0 -4px 8px rgba(139,64,0,0.5), inset 0 3px 6px rgba(255,255,255,0.5); animation: coinFall linear infinite; }
+  .coin::after { content: '₩'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 15px; font-weight: 900; color: #6b2800; font-family: Arial, sans-serif; }
+  @keyframes coinFall { 0% { transform: translateY(-60px) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(105vh) rotate(720deg); opacity: 0; } }
+  .coin.small { width: 26px; height: 26px; }
+  .coin.large { width: 58px; height: 58px; }
+  .hero { position: relative; background: radial-gradient(circle at 20% 20%, rgba(232,93,4,0.25), transparent 45%), radial-gradient(circle at 80% 80%, rgba(30,75,143,0.5), transparent 45%), linear-gradient(135deg, #0B2545 0%, #071A33 60%, #04101f 100%); color: #fff; padding: 70px 50px 60px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border: 1px solid rgba(232,93,4,0.7); border-radius: 100px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #FFB870; margin-bottom: 20px; font-weight: 700; }
+  .hero-badge .i { stroke: #FFB870; width: 16px; height: 16px; }
+  .hero h1 { font-size: 48px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.1; background: linear-gradient(135deg, #ffffff 0%, #F7F4EA 50%, #E85D04 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 14px; }
+  .hero p { font-size: 18px; opacity: 0.9; max-width: 680px; color: #F7F4EA; }
+  .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
+  .hero-stat { background: rgba(247,244,234,0.08); border: 1px solid rgba(232,93,4,0.35); border-radius: 14px; padding: 18px 16px; display: flex; flex-direction: column; gap: 4px; }
+  .hero-stat .icon-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .hero-stat .icon-row .i { stroke: #FFB870; width: 22px; height: 22px; opacity: 0.95; }
+  .hero-stat .n { font-size: 24px; font-weight: 700; color: #E85D04; display: block; }
+  .hero-stat .t { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85; margin-top: 4px; color: #F7F4EA; }
+  .tabs { display: flex; gap: 6px; background: var(--bg); border-bottom: 1px solid var(--line); padding: 0 40px; overflow-x: auto; scrollbar-width: none; position: relative; z-index: 3; -webkit-overflow-scrolling: touch; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { display: inline-flex; align-items: center; gap: 8px; padding: 18px 24px; font-weight: 700; font-size: 14px; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; transition: all 0.25s; user-select: none; }
+  .tab .i { width: 18px; height: 18px; }
+  .tab:hover { color: var(--navy); }
+  .tab:hover .i { stroke: var(--navy); }
+  .tab.active { color: var(--navy); border-bottom-color: var(--action); }
+  .tab.active .i { stroke: var(--action); }
+  .section { padding: 55px 60px; border-bottom: 1px solid var(--line); }
+  .section.hidden { display: none; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--action); font-weight: 800; margin-bottom: 8px; }
+  .section-tag .i { width: 14px; height: 14px; stroke: var(--action); }
+  .section h2 { display: flex; align-items: center; gap: 12px; font-size: 30px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 22px; color: var(--navy); }
+  .section h2 .i { stroke: var(--action); width: 30px; height: 30px; flex-shrink: 0; }
+  .calc-upgrade { margin-top: 40px; padding: 32px; background: linear-gradient(150deg, #0B2545 0%, #071A33 100%); border: 2px solid var(--action); border-radius: 20px; color: #fff; box-shadow: 0 20px 50px rgba(11,37,69,0.35); position: relative; overflow: hidden; }
+  .calc-upgrade::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: linear-gradient(180deg, #E85D04, #b84700); }
+  .calc-upgrade-title { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 20px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: #E85D04; text-align: center; margin-bottom: 8px; }
+  .calc-upgrade-title .i { width: 26px; height: 26px; stroke: #E85D04; }
+  .calc-upgrade-sub { text-align: center; font-size: 13.5px; color: #F7F4EA; margin-bottom: 24px; line-height: 1.75; }
+  .calc-upgrade-sub b { color: #FF8C42; font-weight: 900; }
+  .step-label-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(232,93,4,0.14); border: 1px solid rgba(232,93,4,0.55); border-radius: 100px; color: #E85D04; font-size: 11px; font-weight: 800; letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 8px; }
+  .step-label-btn .i { width: 14px; height: 14px; stroke: #E85D04; }
+  .calc-upgrade-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 18px; }
+  .calc-upgrade .premium-input, .calc-upgrade .premium-select { background: rgba(247,244,234,0.08); border: 1px solid rgba(232,93,4,0.45); color: #F7F4EA; width: 100%; padding: 10px 14px; border-radius: 10px; font-family: inherit; font-size: 14px; }
+  .calc-upgrade .premium-select option { background: #0B2545; color: #F7F4EA; }
+  .field-hint { font-size: 11px; color: #FFB870; margin-top: 6px; line-height: 1.4; display: flex; align-items: center; gap: 5px; }
+  .field-hint .i { width: 12px; height: 12px; stroke: #FFB870; flex-shrink: 0; }
+  .field-hint.warn { color: #ffb84d; }
+  .field-hint.warn .i { stroke: #ffb84d; }
+  .up-mode-toggle { display: flex; gap: 10px; justify-content: center; margin-bottom: 22px; flex-wrap: wrap; }
+  .up-mode-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border: 2px solid rgba(232,93,4,0.45); background: rgba(247,244,234,0.05); color: #F7F4EA; border-radius: 12px; font-family: inherit; font-weight: 800; font-size: 13px; cursor: pointer; transition: all 0.25s; }
+  .up-mode-btn .i { width: 16px; height: 16px; stroke: currentColor; }
+  .up-mode-btn:hover { border-color: #E85D04; color: #E85D04; }
+  .up-mode-btn.active { background: linear-gradient(135deg, #E85D04, #b84700); border-color: #E85D04; color: #fff; }
+  .up-mode-btn.active .i { stroke: #fff; }
+  .up-action { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+  .up-result { margin-top: 24px; }
+  .up-card { padding: 22px 24px; border-radius: 16px; background: linear-gradient(150deg, rgba(232,93,4,0.15), rgba(184,71,0,0.25)); border: 2px solid var(--action); margin-bottom: 18px; }
+  .up-card-title { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: #E85D04; margin-bottom: 14px; }
+  .up-card-title .i { width: 18px; height: 18px; stroke: #E85D04; }
+  .up-totals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center; }
+  .up-tot-item .lbl { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(247,244,234,0.85); font-weight: 700; margin-bottom: 6px; }
+  .up-tot-item .val { font-size: 22px; font-weight: 900; background: linear-gradient(135deg, #ffffff, #F7F4EA, #E85D04); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .up-tot-item.hl .val { font-size: 26px; }
+  .up-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed rgba(232,93,4,0.5); text-align: center; }
+  .up-split-item .lbl { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(247,244,234,0.85); font-weight: 700; margin-bottom: 6px; }
+  .up-split-item .val { font-size: 20px; font-weight: 900; background: linear-gradient(135deg, #ffffff, #F7F4EA, #E85D04); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .up-note { margin-top: 14px; font-size: 12.5px; color: #F7F4EA; line-height: 1.8; text-align: center; }
+  .up-note b { color: #FF8C42; font-weight: 900; }
+  table.up-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 700px; }
+  table.up-table th, table.up-table td { padding: 10px 12px; text-align: right; border-bottom: 1px solid rgba(232,93,4,0.2); white-space: nowrap; color: #F7F4EA; }
+  table.up-table th { background: rgba(232,93,4,0.18); color: #E85D04; font-weight: 800; font-size: 11px; letter-spacing: 0.6px; text-transform: uppercase; position: sticky; top: 0; z-index: 2; line-height: 1.25; }
+  table.up-table td:first-child, table.up-table td:nth-child(2) { text-align: center; }
+  table.up-table th:nth-child(1), table.up-table td:nth-child(1) { width: 70px; min-width: 70px; }
+  table.up-table th:nth-child(2), table.up-table td:nth-child(2) { width: 110px; min-width: 110px; }
+  table.up-table tbody tr:hover td { background: rgba(232,93,4,0.08); }
+  table.up-table tbody tr.total-row td { background: linear-gradient(135deg, rgba(232,93,4,0.22), rgba(184,71,0,0.32)); font-weight: 900; color: #E85D04; border-top: 2px solid var(--action); }
+  table.up-table td.bin-lost { color: var(--red-1); font-weight: 800; }
+  table.up-table td.cell-head.bin-lost { color: var(--red-1); }
+  table.up-table td.cell-left.bin-lost { color: var(--red-1); }
+  table.up-table td.cell-right.bin-lost { color: var(--red-1); }
+  table.up-table thead tr.sub-head th { background: rgba(232,93,4,0.10); font-size: 10px; letter-spacing: 0.5px; padding: 6px 8px; border-bottom: 1px solid rgba(232,93,4,0.3); }
+  table.up-table thead tr.sub-head th.col-head { color: #E85D04; }
+  table.up-table thead tr.sub-head th.col-left { color: #9dd0ff; }
+  table.up-table thead tr.sub-head th.col-right { color: #F7F4EA; }
+  table.up-table td.cell-head { color: #F7F4EA; }
+  table.up-table td.cell-left { color: #9dd0ff; }
+  table.up-table td.cell-right { color: #F7F4EA; }
+  table.up-table td.cell-total { color: #E85D04; font-weight: 800; }
+
+  .chart-wrap { margin-top: 22px; padding: 20px; background: rgba(247,244,234,0.05); border-radius: 14px; border: 1px solid rgba(232,93,4,0.3); height: 340px; position: relative; }
+  .chart-wrap canvas { width: 100% !important; height: 100% !important; }
+  .chart-title { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: #E85D04; margin-bottom: 12px; }
+  .chart-title .i { width: 18px; height: 18px; stroke: #E85D04; }
+
+  .pdf-actions-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 22px; }
+  .pdf-actions-row .gold-btn { padding: 14px 22px; font-size: 13px; justify-content: center; width: 100%; }
+  .pdf-actions-row .gold-btn.alt { background: linear-gradient(135deg, #0B2545 0%, #071A33 100%); color: #E85D04; border: 2px solid var(--action); box-shadow: 0 10px 26px rgba(232,93,4,0.28); }
+  .pdf-actions-row .gold-btn.alt .i { stroke: #E85D04; }
+  .pdf-actions-row .gold-btn.alt:hover { border-color: #FFB870; }
+  .up-pdf-hint { font-size: 11.5px; color: rgba(247,244,234,0.7); text-align: center; line-height: 1.6; margin-top: 10px; }
+
+    .up-disclaimer {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: rgba(232,93,4,0.08);
+    border-left: 3px solid rgba(232,93,4,0.7);
+    border-radius: 8px;
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: #F7F4EA;
+  }
+  .up-disclaimer .i { width: 18px; height: 18px; stroke: #FF8C42; flex-shrink: 0; margin-top: 2px; }
+  .up-disclaimer b { color: #FF8C42; font-weight: 900; }
+
+  .rep-block { margin-top: 28px; padding: 26px; background: linear-gradient(150deg, rgba(232,93,4,0.10), rgba(184,71,0,0.18)); border: 2px dashed var(--action); border-radius: 18px; }
+  .rep-block-title { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 17px; font-weight: 900; letter-spacing: 1.2px; text-transform: uppercase; color: #E85D04; text-align: center; margin-bottom: 8px; }
+  .rep-block-title .i { width: 22px; height: 22px; stroke: #E85D04; }
+    .rep-block-sub { text-align: center; font-size: 13px; color: #F7F4EA; margin-bottom: 20px; line-height: 1.75; }
+  .rep-block-sub b { color: #FF8C42; font-weight: 900; }
+  .rep-controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 18px; }
+  .rep-controls .premium-input, .rep-controls .premium-select { background: rgba(247,244,234,0.08); border: 1px solid rgba(232,93,4,0.45); color: #F7F4EA; width: 100%; padding: 10px 14px; border-radius: 10px; font-family: inherit; font-size: 14px; }
+  .rep-controls .premium-select option { background: #0B2545; color: #F7F4EA; }
+  .rep-action { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .rep-random-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 12px; font-family: inherit; font-weight: 900; font-size: 13px; letter-spacing: 0.8px; text-transform: uppercase; color: #fff; background: linear-gradient(135deg, #ffb870 0%, #E85D04 40%, #b84700 100%); border: none; cursor: pointer; box-shadow: 0 10px 26px rgba(232,93,4,0.5); transition: all 0.25s; }
+  .rep-random-btn .i { stroke: #fff; width: 18px; height: 18px; }
+  .rep-random-btn:hover { transform: translateY(-2px); }
+  .rep-result-grid { margin-top: 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; text-align: center; }
+  .rep-res-item .lbl { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(247,244,234,0.85); font-weight: 700; margin-bottom: 6px; }
+  .rep-res-item .val { font-size: 22px; font-weight: 900; background: linear-gradient(135deg, #ffffff, #F7F4EA, #E85D04); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .rep-res-item.hl .val { font-size: 26px; }
+    .rep-note { margin-top: 14px; font-size: 12.5px; text-align: center; color: #F7F4EA; line-height: 1.8; }
+  .rep-note b { color: #FF8C42; font-weight: 900; }
+  .rules-block { margin-top: 22px; padding: 22px 26px; background: rgba(232,93,4,0.12); border-left: 4px solid var(--action); border-radius: 12px; color: #F7F4EA; font-size: 13.5px; line-height: 1.85; }
+  .rules-block .r-title { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: #FF8C42; margin-bottom: 12px; }
+  .rules-block .r-title .i { width: 18px; height: 18px; stroke: #FF8C42; }
+  .rules-block ol { padding-left: 20px; }
+  .rules-block ol li { margin-bottom: 8px; color: #F7F4EA; }
+  .rules-block b { color: #FF8C42; font-weight: 900; }
+  .packs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 26px; }
+  .pack { position: relative; background: var(--card-bg); border: 2px solid var(--line); border-radius: 18px; padding: 28px 22px; text-align: center; transition: all 0.25s ease; }
+  .pack:hover { transform: translateY(-6px); border-color: var(--action); }
+  .pack.gold { background: linear-gradient(160deg, #0B2545 0%, #071A33 100%); border-color: var(--action); color: #fff; }
+  .pack.gold .pack-name { color: #E85D04; }
+  .pack.gold .pack-price { color: #F7F4EA; }
+  .pack.gold .pack-sub { color: rgba(247,244,234,0.7); }
+  .pack-icon { display: flex; justify-content: center; margin-bottom: 14px; }
+  .pack-icon .i { width: 32px; height: 32px; stroke: var(--navy); }
+  .pack.gold .pack-icon .i { stroke: #E85D04; }
+  .pack-name { font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--navy); margin-bottom: 12px; }
+  .pack-price { font-size: 34px; font-weight: 800; color: var(--action); line-height: 1; }
+  .pack-sub { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .pack-flag { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 4px; background: linear-gradient(135deg, #E85D04, #b84700); color: #fff; font-size: 10px; letter-spacing: 2px; font-weight: 700; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; white-space: nowrap; }
+  .pack-flag .i { width: 10px; height: 10px; stroke: #fff; }
+  .triangle-wrap { display: flex; justify-content: center; margin: 30px 0 10px; }
+  .triangle-visual { position: relative; width: 340px; height: 260px; max-width: 100%; }
+  .node-v { position: absolute; width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(150deg, #E85D04 0%, #b84700 50%, #7a2f00 100%); color: #fff; font-weight: 700; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 12px 30px rgba(232,93,4,0.5); font-size: 13px; border: 3px solid #F7F4EA; }
+  .node-v .n-name { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+  .node-v .n-pv { font-size: 16px; font-weight: 800; margin-top: 2px; }
+  .node-v.head { top: 0; left: 50%; transform: translateX(-50%); }
+  .node-v.left { bottom: 0; left: 0; }
+  .node-v.right { bottom: 0; right: 0; }
+  .triangle-lines { position: absolute; inset: 0; pointer-events: none; }
+  .triangle-lines line { stroke: var(--navy); stroke-width: 2.5; stroke-dasharray: 6 6; opacity: 0.65; }
+  .pv-total { margin: 26px auto 0; max-width: 480px; background: linear-gradient(135deg, #F7F4EA 0%, #ffffff 100%); border: 2px dashed var(--action); border-radius: 18px; padding: 22px 26px; text-align: center; }
+  .pv-total .lbl { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--navy); font-weight: 700; }
+  .pv-total .val { display: block; font-size: 42px; font-weight: 800; color: var(--action); line-height: 1; margin: 8px 0; }
+  .pv-total .formula { font-size: 14px; color: var(--muted); }
+
+  .quals-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 8px; }
+  .qual-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; transition: border-color 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; gap: 8px; }
+  .qual-card:hover { border-color: var(--action); box-shadow: 0 8px 24px rgba(232,93,4,0.12); }
+  .qual-name { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 900; letter-spacing: 1.2px; text-transform: uppercase; color: var(--navy); }
+  .qual-name .i { width: 18px; height: 18px; stroke: var(--action); flex-shrink: 0; }
+  .qual-turnover { font-size: 13.5px; color: var(--muted); margin-top: 2px; }
+  .qual-bonus { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ink); }
+  .qual-bonus .i { width: 16px; height: 16px; stroke: var(--trust); flex-shrink: 0; }
+  .qual-pack { align-self: flex-start; margin-top: 6px; display: inline-block; padding: 4px 12px; border-radius: 100px; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; background: var(--gold-1); color: var(--navy); border: 1px solid var(--action); }
+  body.dark-theme .qual-pack { background: linear-gradient(135deg, var(--action), #b84700); color: #fff; border-color: var(--action); }
+  .quals-footer { display: flex; align-items: flex-start; gap: 12px; margin-top: 22px; padding: 18px 22px; background: linear-gradient(135deg, #F7F4EA 0%, #eae7d6 100%); border: 1px solid var(--action); border-radius: 12px; font-size: 13.5px; color: var(--navy); line-height: 1.7; }
+  .quals-footer b { color: var(--navy); }
+  .quals-footer .i { width: 20px; height: 20px; stroke: var(--action); flex-shrink: 0; margin-top: 2px; }
+  body.dark-theme .quals-footer { background: linear-gradient(135deg, #0B2545, #071A33); color: #F7F4EA; border-color: var(--action); }
+  body.dark-theme .quals-footer b { color: #E85D04; }
+  body.dark-theme .quals-footer .i { stroke: #E85D04; }
+
+  .schema-wrap { margin-top: 26px; padding: 30px 20px; background: #F7F4EA; border-radius: 18px; border: 1px solid #e1dcc9; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  body.dark-theme .schema-wrap { background: #0B2545; border-color: #1B3A5B; }
+  .schema-wrap svg { display: block; margin: 0 auto; min-width: 900px; }
+
+  table.tbl { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 0; font-size: 15px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+  .table-scroll { overflow-x: auto; margin-top: 22px; -webkit-overflow-scrolling: touch; }
+  .table-scroll table.tbl { margin-top: 0; min-width: 640px; }
+  .table-landscape { overflow-x: auto; margin-top: 22px; border-radius: 14px; -webkit-overflow-scrolling: touch; }
+
+  .table-narrow-products table.tbl { table-layout: fixed; }
+  .table-narrow-products table.tbl th:nth-child(1),
+  .table-narrow-products table.tbl td:nth-child(1) { width: 46%; }
+  .table-narrow-products table.tbl th:nth-child(2),
+  .table-narrow-products table.tbl td:nth-child(2) { width: 12%; text-align: center; }
+  .table-narrow-products table.tbl th:nth-child(3),
+  .table-narrow-products table.tbl td:nth-child(3) { width: 24%; }
+  .table-narrow-products table.tbl th:nth-child(4),
+  .table-narrow-products table.tbl td:nth-child(4) { width: 18%; }
+  .table-narrow-products table.tbl th,
+  .table-narrow-products table.tbl td { padding: 11px 12px; font-size: 13.5px; }
+
+  .table-narrow-sources table.tbl { table-layout: fixed; }
+  .table-narrow-sources table.tbl th:nth-child(1),
+  .table-narrow-sources table.tbl td:nth-child(1) { width: 26%; }
+  .table-narrow-sources table.tbl th:nth-child(2),
+  .table-narrow-sources table.tbl td:nth-child(2) { width: 54%; }
+  .table-narrow-sources table.tbl th:nth-child(3),
+  .table-narrow-sources table.tbl td:nth-child(3) { width: 20%; }
+  .table-narrow-sources table.tbl th,
+  .table-narrow-sources table.tbl td { padding: 11px 12px; font-size: 13.5px; }
+
+  .table-narrow-steps table.tbl { table-layout: fixed; }
+  .table-narrow-steps table.tbl th:nth-child(1),
+  .table-narrow-steps table.tbl td:nth-child(1) { width: 62%; }
+  .table-narrow-steps table.tbl th:nth-child(2),
+  .table-narrow-steps table.tbl td:nth-child(2) { width: 38%; }
+  .table-narrow-steps table.tbl th,
+  .table-narrow-steps table.tbl td { padding: 11px 12px; font-size: 13.5px; }
+
+  table.tbl th, table.tbl td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; word-break: break-word; }
+  table.tbl th { background: #F7F4EA; color: var(--navy); font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+  body.dark-theme table.tbl th { background: #0B2545; }
+  table.tbl tr.total td { background: linear-gradient(135deg, #F7F4EA, #eae7d6); font-weight: 700; color: var(--navy); border-top: 2px solid var(--action); }
+  body.dark-theme table.tbl tr.total td { background: linear-gradient(135deg, #0B2545, #071A33); color: #E85D04; }
+  .note { display: flex; align-items: flex-start; gap: 12px; background: linear-gradient(135deg, #F7F4EA 0%, #eae7d6 100%); border-left: 4px solid var(--action); padding: 18px 22px; border-radius: 10px; font-size: 14px; color: var(--navy); margin-top: 22px; }
+  .note b { color: var(--navy); }
+  .note > .i { width: 20px; height: 20px; stroke: var(--action); flex-shrink: 0; margin-top: 2px; }
+  body.dark-theme .note { background: linear-gradient(135deg, #0B2545, #071A33); color: #F7F4EA; }
+  body.dark-theme .note b { color: #E85D04; }
+  .table-footnote { margin-top: 14px; padding: 14px 18px; background: rgba(232,93,4,0.10); border-left: 3px solid var(--action); border-radius: 8px; font-size: 12.5px; line-height: 1.75; color: #F7F4EA; }
+  .table-footnote b { color: #FF8C42; font-weight: 900; }
+  body.dark-theme .table-footnote { color: #F7F4EA; }
+  body.dark-theme .table-footnote b { color: #FF8C42; }
+  .gold-btn { display: inline-flex; align-items: center; gap: 12px; padding: 18px 48px; font-family: inherit; font-size: 16px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: #fff; background: linear-gradient(135deg, #ffb870 0%, #E85D04 35%, #b84700 70%, #7a2f00 100%); border: none; border-radius: 16px; cursor: pointer; box-shadow: 0 14px 36px rgba(232,93,4,0.5), inset 0 -3px 8px rgba(122,47,0,0.35), inset 0 2px 4px rgba(255,255,255,0.35); transition: all 0.25s; }
+  .gold-btn .i { stroke: #fff; width: 20px; height: 20px; }
+  .gold-btn:hover { transform: translateY(-3px); }
+  .footer { background: linear-gradient(160deg, #0B2545, #071A33); color: rgba(247,244,234,0.85); padding: 34px 60px; text-align: center; font-size: 13px; }
+  .footer b { color: #E85D04; }
+  .legal { background: #071A33; color: rgba(247,244,234,0.65); padding: 22px 60px 26px; text-align: center; font-size: 11.5px; line-height: 1.7; border-top: 1px solid rgba(232,93,4,0.35); }
+  .legal b { color: #E85D04; font-weight: 700; }
+  .legal .legal-inner { max-width: 900px; margin: 0 auto; }
+
+  @media (max-width: 1024px) {
+    body { padding: 24px 14px; }
+    .container { border-radius: 20px; }
+    .hero { padding: 55px 32px 45px; }
+    .hero h1 { font-size: 38px; }
+    .hero p { font-size: 16px; }
+    .section { padding: 42px 32px; }
+    .section h2 { font-size: 26px; }
+    .packs { gap: 14px; }
+    .pack { padding: 22px 16px; }
+    .pack-price { font-size: 28px; }
+    .calc-upgrade { padding: 24px; }
+  }
+
+  @media (max-width: 768px) {
+    body { padding: 14px 8px; }
+    .container { border-radius: 16px; }
+    .theme-toggle { width: 42px; height: 42px; top: 12px; right: 12px; }
+    .hero { padding: 38px 18px 32px; }
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 15px; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 24px; }
+    .hero-stat { padding: 12px 12px; }
+    .hero-stat .n { font-size: 20px; }
+    .hero-stat .t { font-size: 10.5px; letter-spacing: 0.6px; }
+    .tabs { padding: 0 8px; }
+    .tab { padding: 14px 14px; font-size: 12.5px; }
+    .tab .i { width: 15px; height: 15px; }
+    .section { padding: 28px 16px; }
+    .section h2 { font-size: 20px; gap: 8px; margin-bottom: 16px; }
+    .section h2 .i { width: 22px; height: 22px; }
+    .section-tag { font-size: 10.5px; letter-spacing: 2px; }
+    .packs { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .pack { padding: 18px 12px; border-radius: 14px; }
+    .pack-name { font-size: 12px; letter-spacing: 1.4px; }
+    .pack-price { font-size: 22px; }
+    .pack-sub { font-size: 11px; }
+    .pack-flag { font-size: 9px; padding: 4px 10px; letter-spacing: 1.4px; }
+    .triangle-visual { width: 280px; height: 215px; }
+    .node-v { width: 76px; height: 76px; }
+    .node-v .n-name { font-size: 10px; }
+    .node-v .n-pv { font-size: 13px; }
+    .pv-total .val { font-size: 30px; }
+    .quals-grid { grid-template-columns: 1fr; }
+    .qual-card { padding: 14px 14px; }
+    .qual-name { font-size: 13.5px; }
+    .qual-turnover, .qual-bonus { font-size: 12.5px; }
+    .calc-upgrade { padding: 18px 12px; border-radius: 16px; margin-top: 24px; }
+    .calc-upgrade-title { font-size: 15px; }
+    .calc-upgrade-sub { font-size: 11.5px; margin-bottom: 16px; }
+    .calc-upgrade-grid { grid-template-columns: 1fr !important; gap: 10px; }
+    .up-mode-toggle { gap: 8px; }
+    .up-mode-btn { padding: 10px 14px; font-size: 11.5px; }
+    .up-totals { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+    .up-tot-item .lbl { font-size: 9.5px; letter-spacing: 0.6px; }
+    .up-tot-item .val { font-size: 16px; }
+    .up-tot-item.hl .val { font-size: 19px; }
+    .up-split { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .up-split-item .val { font-size: 15px; }
+    .up-note { font-size: 11px; }
+    .rep-controls { grid-template-columns: 1fr !important; gap: 10px; }
+    .rep-result-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .rep-res-item .val { font-size: 17px; }
+    .rep-res-item.hl .val { font-size: 20px; }
+    .rules-block { padding: 14px 16px; font-size: 12.5px; }
+    .chart-wrap { height: 240px; padding: 12px; }
+    .chart-title { font-size: 11.5px; }
+    .pdf-actions-row { grid-template-columns: 1fr; gap: 10px; }
+    .pdf-actions-row .gold-btn { padding: 12px 14px; font-size: 11.5px; letter-spacing: 0.5px; }
+    .up-pdf-hint { font-size: 10.5px; }
+    .up-disclaimer { font-size: 11px; padding: 12px 12px; }
+    .footer { padding: 22px 18px; font-size: 12px; }
+    .legal { padding: 16px 16px 18px; font-size: 10.5px; }
+    table.up-table { min-width: 640px; }
+    .step-label-btn { font-size: 10px; padding: 5px 9px; }
+    .calc-upgrade .premium-input, .calc-upgrade .premium-select,
+    .rep-controls .premium-input, .rep-controls .premium-select { font-size: 13px; padding: 8px 10px; }
+    .field-hint { font-size: 10px; }
+
+    table.tbl th, table.tbl td { padding: 9px 10px; font-size: 12px; }
+    .table-narrow-products table.tbl th,
+    .table-narrow-products table.tbl td { padding: 8px 9px; font-size: 12px; }
+    .table-narrow-sources table.tbl th,
+    .table-narrow-sources table.tbl td { padding: 8px 9px; font-size: 12px; }
+    .table-narrow-steps table.tbl th,
+    .table-narrow-steps table.tbl td { padding: 8px 9px; font-size: 12px; }
+  }
+
+  @media (max-width: 480px) {
+    body { padding: 10px 5px; }
+    .hero { padding: 28px 14px 26px; }
+    .hero h1 { font-size: 22px; }
+    .hero-badge { font-size: 10px; padding: 6px 12px; letter-spacing: 2px; }
+    .hero p { font-size: 13.5px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .hero-stat .n { font-size: 17px; }
+    .hero-stat .t { font-size: 9.5px; }
+    .section { padding: 22px 12px; }
+    .section h2 { font-size: 17px; }
+    .section h2 .i { width: 18px; height: 18px; }
+    .packs { grid-template-columns: 1fr; }
+    .pack-price { font-size: 24px; }
+    .triangle-visual { width: 240px; height: 190px; }
+    .node-v { width: 66px; height: 66px; border-width: 2px; }
+    .node-v .n-name { font-size: 9.5px; }
+    .node-v .n-pv { font-size: 11.5px; }
+    .pv-total { padding: 16px 14px; }
+    .pv-total .lbl { font-size: 11px; letter-spacing: 1.4px; }
+    .pv-total .val { font-size: 26px; }
+    .pv-total .formula { font-size: 12px; }
+    .up-totals { grid-template-columns: 1fr; }
+    .up-split { grid-template-columns: 1fr; }
+    .rep-result-grid { grid-template-columns: 1fr; }
+    .chart-wrap { height: 200px; padding: 10px; }
+    .calc-upgrade-title { font-size: 13px; letter-spacing: 0.8px; }
+    .gold-btn { font-size: 13px; padding: 14px 22px; letter-spacing: 0.5px; }
+    .pdf-actions-row .gold-btn { font-size: 10.5px; padding: 11px 10px; }
+    .rep-random-btn { font-size: 11.5px; padding: 12px 18px; }
+    .rules-block ol { padding-left: 16px; }
+    .legal { font-size: 10px; padding: 14px 12px 16px; }
+
+    table.tbl th, table.tbl td { padding: 8px 8px; font-size: 11px; }
+    .table-narrow-products table.tbl th,
+    .table-narrow-products table.tbl td,
+    .table-narrow-sources table.tbl th,
+    .table-narrow-sources table.tbl td,
+    .table-narrow-steps table.tbl th,
+    .table-narrow-steps table.tbl td { padding: 7px 7px; font-size: 11px; }
+  }
+
+  @media (max-width: 360px) {
+    .hero h1 { font-size: 20px; }
+    .section h2 { font-size: 15px; }
+    .pack-price { font-size: 20px; }
+    .up-tot-item .val { font-size: 15px; }
+    .up-tot-item.hl .val { font-size: 17px; }
+    .rep-res-item .val { font-size: 15px; }
+    .rep-res-item.hl .val { font-size: 17px; }
+    table.tbl th, table.tbl td { padding: 6px 6px; font-size: 10px; }
+  }
+
+  @media print {
+    @page { size: A4 landscape; margin: 8mm; }
+
+    html, body {
+      background: #ffffff !important;
+      color: var(--print-ink) !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      font-size: 10.5px;
+    }
+    .container { box-shadow: none !important; border-radius: 0 !important; max-width: 100% !important; }
+
+    .no-print,
+    .theme-toggle,
+    .tabs,
+    .coins-bg,
+    .up-mode-toggle,
+    .up-action,
+    .calc-upgrade-grid,
+    .pdf-actions-row,
+    .up-pdf-hint,
+    .rep-action,
+    .rep-controls,
+    .up-disclaimer,
+    .step-label-btn,
+    .field-hint,
+    button, .btn, .gold-btn, .rep-random-btn,
+    label input[type="checkbox"],
+    select.premium-select,
+    input.premium-input {
+      display: none !important;
+    }
+
+    .section { page-break-inside: avoid; padding: 8px 10px !important; border-bottom: 1px solid var(--print-line) !important; }
+    .hero { page-break-inside: avoid; }
+
+    .section h2, .hero h1 { color: var(--print-gold-1) !important; -webkit-text-fill-color: var(--print-gold-1) !important; background: none !important; font-size: 15px !important; margin-bottom: 6px !important; }
+    .section h2 .i { width: 14px !important; height: 14px !important; stroke: var(--print-gold-1) !important; }
+    .section-tag, .hero-badge { color: var(--print-gold-2) !important; border-color: var(--print-gold-2) !important; font-size: 9px !important; letter-spacing: 2px !important; }
+    .section-tag .i, .hero-badge .i, .up-card-title .i,
+    .rules-block .r-title .i, .chart-title .i, .rep-block-title .i, .note > .i {
+      stroke: var(--print-gold-2) !important;
+    }
+
+    .hero {
+      background: #ffffff !important;
+      color: var(--print-ink) !important;
+      padding: 8px 10px !important;
+      border-bottom: 2px solid var(--print-gold-1) !important;
+    }
+    .hero p { color: var(--print-ink) !important; font-size: 10.5px !important; }
+    .hero-stats { gap: 5px !important; margin-top: 8px !important; grid-template-columns: repeat(4, 1fr) !important; }
+    .hero-stat { background: var(--print-bg-soft) !important; border: 1px solid var(--print-line) !important; padding: 5px 6px !important; }
+    .hero-stat .n { color: var(--print-gold-2) !important; font-size: 13px !important; }
+    .hero-stat .t { color: var(--print-ink) !important; opacity: 0.85 !important; font-size: 8.5px !important; }
+    .hero-stat .icon-row .i { stroke: var(--print-gold-2) !important; width: 13px !important; height: 13px !important; }
+
+    .table-landscape, .table-scroll { overflow: visible !important; }
+    .table-landscape table.tbl { min-width: 100% !important; width: 100% !important; }
+    table.tbl { border: 1.4px solid var(--print-gold-1) !important; font-size: 10px !important; }
+    table.tbl th {
+      background: var(--print-bg-hard) !important;
+      color: var(--print-gold-1) !important;
+      border-bottom: 1.4px solid var(--print-gold-1) !important;
+      padding: 5px 6px !important;
+      font-weight: 800 !important;
+      font-size: 9px !important;
+      letter-spacing: 0.4px !important;
+    }
+    table.tbl td {
+      color: var(--print-ink) !important;
+      border-bottom: 1px solid var(--print-line) !important;
+      padding: 5px 6px !important;
+    }
+    table.tbl tr.total td {
+      background: var(--print-bg-soft) !important;
+      color: var(--print-gold-1) !important;
+      border-top: 2px solid var(--print-gold-1) !important;
+      font-weight: 800 !important;
+    }
+    table.tbl b, table.tbl strong { color: var(--print-gold-2) !important; }
+
+    .calc-upgrade {
+      background: #ffffff !important;
+      color: var(--print-ink) !important;
+      border: 1.6px solid var(--print-gold-1) !important;
+      box-shadow: none !important;
+      padding: 8px 10px !important;
+      margin-top: 8px !important;
+    }
+    .calc-upgrade::before { background: var(--print-gold-1) !important; }
+    .calc-upgrade-title { color: var(--print-gold-1) !important; font-size: 12px !important; }
+    .calc-upgrade-title .i { width: 14px !important; height: 14px !important; stroke: var(--print-gold-1) !important; }
+    .calc-upgrade-sub { color: var(--print-ink) !important; font-size: 9.5px !important; margin-bottom: 8px !important; }
+    .calc-upgrade-sub b { color: var(--print-gold-2) !important; }
+
+    table.up-table {
+      border: 1.6px solid var(--print-gold-1) !important;
+      font-size: 9.5px !important;
+      min-width: 100% !important;
+    }
+    table.up-table th {
+      background: var(--print-bg-hard) !important;
+      color: var(--print-gold-1) !important;
+      border-bottom: 1.4px solid var(--print-gold-1) !important;
+      padding: 4px 6px !important;
+      font-weight: 900 !important;
+      font-size: 8.5px !important;
+      letter-spacing: 0.4px !important;
+      -webkit-text-fill-color: var(--print-gold-1) !important;
+    }
+    table.up-table td {
+      color: var(--print-ink) !important;
+      border-bottom: 1px solid var(--print-line) !important;
+      padding: 3px 6px !important;
+    }
+    table.up-table thead tr.sub-head th {
+      background: var(--print-bg-soft) !important;
+      color: var(--print-gold-1) !important;
+      border-bottom: 1px solid var(--print-gold-1) !important;
+      font-size: 8px !important;
+      padding: 3px 5px !important;
+    }
+    table.up-table thead tr.sub-head th.col-head { color: var(--print-gold-2) !important; }
+    table.up-table thead tr.sub-head th.col-left  { color: #1f5f8b !important; }
+    table.up-table thead tr.sub-head th.col-right { color: var(--print-gold-1) !important; }
+    table.up-table td.cell-head  { color: var(--print-ink) !important; }
+    table.up-table td.cell-left  { color: #1f5f8b !important; }
+    table.up-table td.cell-right { color: var(--print-gold-1) !important; }
+    table.up-table td.cell-total { color: var(--print-gold-2) !important; font-weight: 900 !important; }
+    table.up-table tbody tr.total-row td {
+      background: var(--print-bg-soft) !important;
+      color: var(--print-gold-2) !important;
+      border-top: 2px solid var(--print-gold-1) !important;
+      font-weight: 900 !important;
+      -webkit-text-fill-color: var(--print-gold-2) !important;
+    }
+    table.up-table td.bin-lost,
+    table.up-table td.cell-head.bin-lost,
+    table.up-table td.cell-left.bin-lost,
+    table.up-table td.cell-right.bin-lost { color: #b02020 !important; font-weight: 900 !important; }
+
+    .up-card {
+      background: var(--print-bg-soft) !important;
+      border: 1.6px solid var(--print-gold-1) !important;
+      padding: 6px 10px !important;
+      margin-bottom: 6px !important;
+      page-break-inside: avoid;
+    }
+    .up-card-title { color: var(--print-gold-2) !important; font-size: 10px !important; margin-bottom: 6px !important; }
+    .up-tot-item .lbl, .up-split-item .lbl { color: var(--print-ink) !important; font-weight: 800 !important; font-size: 8.5px !important; }
+    .up-tot-item .val, .up-split-item .val {
+      -webkit-text-fill-color: var(--print-gold-2) !important;
+      background: none !important;
+      color: var(--print-gold-2) !important;
+      font-size: 13px !important;
+    }
+    .up-tot-item.hl .val { font-size: 15px !important; }
+    .up-note { color: var(--print-ink) !important; font-size: 9px !important; }
+    .up-note b { color: var(--print-gold-2) !important; }
+
+    .rules-block {
+      background: var(--print-bg-soft) !important;
+      color: var(--print-ink) !important;
+      border-left: 4px solid var(--print-gold-1) !important;
+      padding: 6px 10px !important;
+      font-size: 9.5px !important;
+      page-break-inside: avoid;
+    }
+    .rules-block b { color: var(--print-gold-2) !important; }
+    .rules-block .r-title { color: var(--print-gold-2) !important; font-size: 10px !important; margin-bottom: 4px !important; }
+    .rules-block ol { padding-left: 14px !important; }
+    .rules-block ol li { margin-bottom: 2px !important; }
+
+    .table-footnote {
+      background: var(--print-bg-soft) !important;
+      color: var(--print-ink) !important;
+      border-left: 3px solid var(--print-gold-1) !important;
+      font-size: 9px !important;
+      padding: 5px 8px !important;
+    }
+    .table-footnote b { color: var(--print-gold-2) !important; }
+
+    .rep-block {
+      background: var(--print-bg-soft) !important;
+      border: 1.6px dashed var(--print-gold-1) !important;
+      padding: 6px 10px !important;
+      page-break-inside: avoid;
+    }
+    .rep-block-title { color: var(--print-gold-2) !important; font-size: 11px !important; margin-bottom: 4px !important; }
+    .rep-block-sub { color: var(--print-ink) !important; font-size: 9.5px !important; margin-bottom: 8px !important; }
+    .rep-block-sub b { color: var(--print-gold-2) !important; }
+    .rep-result-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 6px !important; margin-top: 0 !important; }
+    .rep-res-item .lbl { color: var(--print-ink) !important; font-size: 8.5px !important; }
+    .rep-res-item .val {
+      -webkit-text-fill-color: var(--print-gold-2) !important;
+      background: none !important;
+      color: var(--print-gold-2) !important;
+      font-size: 13px !important;
+    }
+    .rep-note { color: var(--print-ink) !important; font-size: 9px !important; }
+    .rep-note b { color: var(--print-gold-2) !important; }
+
+    .packs { gap: 6px !important; margin-top: 8px !important; }
+    .pack { border-color: var(--print-line) !important; padding: 8px 6px !important; page-break-inside: avoid; }
+    .pack.gold { background: var(--print-bg-soft) !important; color: var(--print-ink) !important; border-color: var(--print-gold-1) !important; }
+    .pack.gold .pack-name, .pack.gold .pack-price, .pack.gold .pack-sub { color: var(--print-ink) !important; }
+    .pack-name { color: var(--print-gold-2) !important; font-size: 10px !important; margin-bottom: 4px !important; }
+    .pack-price { color: var(--print-ink) !important; font-size: 16px !important; }
+    .pack-sub { color: var(--print-ink) !important; opacity: 0.85 !important; font-size: 9px !important; margin-top: 3px !important; }
+    .pack-icon { margin-bottom: 4px !important; }
+    .pack-icon .i { width: 18px !important; height: 18px !important; stroke: var(--print-gold-2) !important; }
+
+    .quals-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 6px !important; }
+    .qual-card { padding: 6px 8px !important; page-break-inside: avoid; }
+    .qual-name { color: var(--print-gold-1) !important; font-size: 10px !important; }
+    .qual-name .i { width: 12px !important; height: 12px !important; }
+    .qual-name .i, .qual-bonus .i { stroke: var(--print-gold-2) !important; }
+    .qual-turnover, .qual-bonus { color: var(--print-ink) !important; font-size: 9px !important; }
+    .qual-pack { background: var(--print-bg-hard) !important; color: var(--print-gold-1) !important; border-color: var(--print-gold-1) !important; font-size: 8px !important; padding: 2px 8px !important; }
+    .quals-footer { background: var(--print-bg-soft) !important; color: var(--print-ink) !important; border-color: var(--print-gold-1) !important; font-size: 9px !important; padding: 5px 8px !important; }
+    .quals-footer b { color: var(--print-gold-1) !important; }
+    .quals-footer .i { stroke: var(--print-gold-2) !important; }
+
+    .note { background: var(--print-bg-soft) !important; color: var(--print-ink) !important; border-left-color: var(--print-gold-1) !important; font-size: 9.5px !important; padding: 6px 10px !important; }
+    .note b { color: var(--print-gold-1) !important; }
+    .pv-total { background: var(--print-bg-soft) !important; border-color: var(--print-gold-1) !important; padding: 8px 10px !important; }
+    .pv-total .lbl, .pv-total .val { color: var(--print-gold-1) !important; font-size: 11px !important; }
+    .pv-total .val { font-size: 20px !important; }
+    .pv-total .formula { font-size: 9.5px !important; color: var(--print-ink) !important; }
+
+    .schema-wrap { background: #ffffff !important; border-color: var(--print-line) !important; padding: 4px !important; overflow: visible !important; page-break-inside: avoid; }
+    .schema-wrap svg { min-width: 0 !important; width: 100% !important; max-height: 160mm !important; height: auto !important; }
+
+    .triangle-visual { width: 200px !important; height: 150px !important; }
+    .node-v { width: 60px !important; height: 60px !important; border-width: 2px !important; }
+    .node-v .n-name { font-size: 9px !important; }
+    .node-v .n-pv { font-size: 11px !important; }
+
+    .chart-wrap {
+      display: block !important;
+      height: 75mm !important;
+      max-height: 75mm !important;
+      padding: 6px !important;
+      margin-top: 6px !important;
+      background: var(--print-bg-soft) !important;
+      border: 1.6px solid var(--print-gold-1) !important;
+      page-break-inside: avoid;
+      overflow: hidden !important;
+    }
+    .chart-title { color: var(--print-gold-2) !important; font-size: 10px !important; margin-bottom: 4px !important; }
+    .chart-wrap canvas { max-height: 65mm !important; }
+
+    .footer { background: #ffffff !important; color: var(--print-ink) !important; border-top: 2px solid var(--print-gold-1) !important; padding: 6px 10px !important; font-size: 10px !important; }
+    .footer b { color: var(--print-gold-2) !important; }
+    .legal { background: #ffffff !important; color: var(--print-ink) !important; border-top: 1px solid var(--print-line) !important; padding: 6px 10px !important; font-size: 9px !important; text-align: left !important; page-break-inside: avoid; }
+    .legal b { color: var(--print-gold-2) !important; }
+    .legal .legal-inner { max-width: 100% !important; }
+
+    .section.hidden { display: block !important; }
+
+    table.tbl, table.up-table { page-break-inside: auto; }
+    table.tbl tr, table.up-table tr { page-break-inside: avoid; }
+    table.tbl thead, table.up-table thead { display: table-header-group; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ic-list" viewBox="0 0 24 24"><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><circle cx="4.5" cy="6" r="1.2"/><circle cx="4.5" cy="12" r="1.2"/><circle cx="4.5" cy="18" r="1.2"/></symbol>
+    <symbol id="ic-box" viewBox="0 0 24 24"><path d="M21 8L12 3 3 8v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></symbol>
+    <symbol id="ic-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/></symbol>
+    <symbol id="ic-tree" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2.2"/><circle cx="6" cy="14" r="2.2"/><circle cx="18" cy="14" r="2.2"/><line x1="12" y1="6.2" x2="6" y2="11.8"/><line x1="12" y1="6.2" x2="18" y2="11.8"/></symbol>
+    <symbol id="ic-trophy" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M12 13v4"/><path d="M9 21h6"/></symbol>
+    <symbol id="ic-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="6"/></symbol>
+    <symbol id="ic-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></symbol>
+    <symbol id="ic-diamond" viewBox="0 0 24 24"><path d="M6 3h12l3 6-9 12L3 9l3-6z"/><path d="M3 9h18"/><path d="M9 3l3 6 3-6"/></symbol>
+    <symbol id="ic-moneybag" viewBox="0 0 24 24"><path d="M9 3h6l-1 3h-4z"/><path d="M8 6c-3 3-4 7-3 10.5C5.6 19.5 8 21 12 21s6.4-1.5 7-4.5C20 13 19 9 16 6"/></symbol>
+    <symbol id="ic-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="ic-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></symbol>
+    <symbol id="ic-crown" viewBox="0 0 24 24"><path d="M3 8l4 4 5-7 5 7 4-4-1 12H4L3 8z"/></symbol>
+    <symbol id="ic-rocket" viewBox="0 0 24 24"><path d="M14 4c3 0 6 3 6 6l-9 9-6-6 9-9z"/></symbol>
+    <symbol id="ic-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/></symbol>
+    <symbol id="ic-medal" viewBox="0 0 24 24"><polygon points="12 2 15 8 22 9 17 14 18 21 12 18 6 21 7 14 2 9 9 8"/></symbol>
+    <symbol id="ic-star" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .7-5.3 4.7 1.6 7.1L12 17.6 5.7 21.5l1.6-7.1L2 9.7 9 9z"/></symbol>
+    <symbol id="ic-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="ic-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="12" x2="12" y2="16"/></symbol>
+    <symbol id="ic-arrow-up" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></symbol>
+    <symbol id="ic-wallet" viewBox="0 0 24 24"><path d="M20 7H6a2 2 0 0 1 0-4h12v4"/><path d="M4 5v14a2 2 0 0 0 2 2h14V7"/></symbol>
+    <symbol id="ic-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1" fill="currentColor"/><circle cx="16" cy="8" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="8" cy="16" r="1" fill="currentColor"/><circle cx="16" cy="16" r="1" fill="currentColor"/></symbol>
+    <symbol id="ic-ticket" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V8z"/><line x1="13" y1="6" x2="13" y2="18" stroke-dasharray="2 2"/></symbol>
+    <symbol id="ic-car" viewBox="0 0 24 24"><path d="M5 17h14M5 17v-4l2-5h10l2 5v4"/><circle cx="7" cy="17" r="1.5"/><circle cx="17" cy="17" r="1.5"/></symbol>
+    <symbol id="ic-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="ic-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></symbol>
+    <symbol id="ic-walk" viewBox="0 0 24 24"><circle cx="13" cy="4" r="2"/><path d="M13 6l-2 5 3 2v5"/><path d="M11 11l-3 1-2 4"/><path d="M14 13l3 1 1 4"/></symbol>
+    <symbol id="ic-pdf" viewBox="0 0 24 24">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="9" y1="15" x2="15" y2="15"/>
+      <line x1="9" y1="18" x2="13" y2="18"/>
+      <line x1="9" y1="12" x2="11" y2="12"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="coins-bg" id="coinsBg" aria-hidden="true"></div>
+
+<button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">
+  <svg class="i"><use href="#ic-moon"/></svg>
+</button>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-badge">
+      <svg class="i"><use href="#ic-coin"/></svg>
+      WHIEDA · Marketing Plan
+    </div>
+    <h1>Золотой треугольник</h1>
+    <p>Старт треугольника — от 750 PV. Максимум — 9 уровней. Три вида вознаграждения: степовое, бинарное, повторные покупки.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="icon-row"><svg class="i"><use href="#ic-coin"/></svg></div>
+        <span class="n">от 750 PV</span>
+        <span class="t">Старт треугольника</span>
+      </div>
+      <div class="hero-stat">
+        <div class="icon-row"><svg class="i"><use href="#ic-people"/></svg></div>
+        <span class="n">3</span>
+        <span class="t">Кабинета на человека</span>
+      </div>
+      <div class="hero-stat">
+        <div class="icon-row"><svg class="i"><use href="#ic-crown"/></svg></div>
+        <span class="n">9</span>
+        <span class="t">Уровней</span>
+      </div>
+      <div class="hero-stat">
+        <div class="icon-row"><svg class="i"><use href="#ic-wallet"/></svg></div>
+        <span class="n">80%</span>
+        <span class="t">Живые деньги</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs no-print">
+    <div class="tab active" data-tab="all"><svg class="i"><use href="#ic-list"/></svg>Весь план</div>
+    <div class="tab" data-tab="packages"><svg class="i"><use href="#ic-box"/></svg>Пакеты</div>
+    <div class="tab" data-tab="calc"><svg class="i"><use href="#ic-calc"/></svg>Калькулятор</div>
+    <div class="tab" data-tab="schema"><svg class="i"><use href="#ic-tree"/></svg>Схема</div>
+    <div class="tab" data-tab="quals"><svg class="i"><use href="#ic-trophy"/></svg>Квалификации</div>
+  </div>
+
+  <div class="section" data-section="packages">
+    <div class="section-tag"><svg class="i"><use href="#ic-coin"/></svg>Уровни входа</div>
+    <h2><svg class="i"><use href="#ic-box"/></svg>Стартовые пакеты</h2>
+    <div class="packs">
+      <div class="pack">
+        <div class="pack-icon"><svg class="i"><use href="#ic-user"/></svg></div>
+        <div class="pack-name">Start</div>
+        <div class="pack-price">250 PV</div>
+        <div class="pack-sub">лимит $250/сутки · повторные с 3 уровней</div>
+      </div>
+      <div class="pack">
+        <div class="pack-icon"><svg class="i"><use href="#ic-medal"/></svg></div>
+        <div class="pack-name">Standart</div>
+        <div class="pack-price">500 PV</div>
+        <div class="pack-sub">лимит $500/сутки · повторные с 6 уровней</div>
+      </div>
+      <div class="pack">
+        <div class="pack-icon"><svg class="i"><use href="#ic-crown"/></svg></div>
+        <div class="pack-name">Premium</div>
+        <div class="pack-price">2000 PV</div>
+        <div class="pack-sub">лимит $2000/сутки · повторные с 9 уровней</div>
+      </div>
+      <div class="pack gold">
+        <div class="pack-flag"><svg class="i"><use href="#ic-star"/></svg>ХИТ ПРОДАЖ</div>
+        <div class="pack-icon"><svg class="i"><use href="#ic-diamond"/></svg></div>
+        <div class="pack-name">Золотой треугольник</div>
+        <div class="pack-price">1500 PV</div>
+        <div class="pack-sub">3 кабинета по 500 PV</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" data-section="packages">
+    <div class="section-tag"><svg class="i"><use href="#ic-diamond"/></svg>Схема входа · ХИТ ПРОДАЖ</div>
+    <h2><svg class="i"><use href="#ic-diamond"/></svg>Золотой треугольник · 1500 PV</h2>
+    <p>Три личных кабинета на одного человека: <b>«Голова»</b> — основной кабинет, внизу два дополнительных: <b>«ЛП»</b> и <b>«ПП»</b>.</p>
+    <div class="triangle-wrap">
+      <div class="triangle-visual">
+        <svg class="triangle-lines" viewBox="0 0 340 260" preserveAspectRatio="none">
+          <line x1="170" y1="48" x2="48" y2="212"/>
+          <line x1="170" y1="48" x2="292" y2="212"/>
+          <line x1="48" y1="212" x2="292" y2="212" stroke-dasharray="0" opacity="0.35"/>
+        </svg>
+        <div class="node-v head"><span class="n-name">Голова</span><span class="n-pv">500 PV</span></div>
+        <div class="node-v left"><span class="n-name">ЛП</span><span class="n-pv">500 PV</span></div>
+        <div class="node-v right"><span class="n-name">ПП</span><span class="n-pv">500 PV</span></div>
+      </div>
+    </div>
+    <div class="pv-total">
+      <div class="lbl"><svg class="i"><use href="#ic-moneybag"/></svg>Стартовый объём</div>
+      <span class="val">1500 PV</span>
+      <div class="formula">3 кабинета по 500 PV</div>
+    </div>
+    <div class="note">
+      <div>После оплаты на бонусный счёт возвращается <b>100% от потраченной суммы кэшбэком</b>.</div>
+    </div>
+  </div>
+
+  <div class="section" data-section="packages">
+    <div class="section-tag"><svg class="i"><use href="#ic-box"/></svg>Пример наполнения</div>
+    <h2><svg class="i"><use href="#ic-box"/></svg>Подбор продукции на 1500 PV</h2>
+    <div class="table-landscape table-narrow-products">
+      <table class="tbl">
+        <thead><tr><th>Позиция</th><th>Кол-во</th><th>Цена</th><th>PV</th></tr></thead>
+        <tbody>
+          <tr><td>Минисауна «Ба-Гуа»</td><td>1</td><td>680 W$ (68 000 ₽)</td><td>500 PV</td></tr>
+          <tr><td>Набор массажёра Magic Foherb 3.0 (TUV)</td><td>1</td><td>650 W$ (65 000 ₽)</td><td>500 PV</td></tr>
+          <tr><td>Стельки с анионами</td><td>3 пары</td><td>110 W$ (11 000 ₽)</td><td>300 PV (100 × 3)</td></tr>
+          <tr><td>Водородный стержень (2 шт)</td><td>1 шт</td><td>50 W$ (5 000 ₽)</td><td>50 PV</td></tr>
+          <tr><td>Высокотехнологичные компьютерные очки</td><td>3 пары</td><td>55 W$ (5 500 ₽)</td><td>150 PV (50 × 3)</td></tr>
+          <tr class="total"><td colspan="2">ИТОГО</td><td>≈ 1875 W$</td><td>1500 PV (1875 W$ кэшбэк)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <svg class="i"><use href="#ic-ticket"/></svg>
+      <div><b>Подарок</b> — компания вправе выбирать сама. В подбор может входить любой продукт из ассортимента.</div>
+    </div>
+  </div>
+
+  <div class="section" data-section="packages">
+    <div class="section-tag"><svg class="i"><use href="#ic-rocket"/></svg>Источники прибыли</div>
+    <h2><svg class="i"><use href="#ic-rocket"/></svg>Три вида вознаграждения</h2>
+    <div class="table-landscape table-narrow-sources">
+      <table class="tbl">
+        <thead><tr><th>Вид</th><th>Условие</th><th>Выплата</th></tr></thead>
+        <tbody>
+          <tr><td><b>1. Степовый бонус</b></td><td>Выплата на каждом уровне — одна выплата — 50% от наименьшего пакета в паре.</td><td><b>$125</b> / <b>$250</b> / <b>$1000</b></td></tr>
+          <tr><td><b>2. Бинарный бонус</b></td><td><b>10% от ТО меньшей ветки</b>. В расчёт не входит ТО, за которое получен Степовый бонус. Остаток переносится на следующий отчётный день.</td><td>10% с любого уровня</td></tr>
+          <tr><td><b>3. Бонус повторных покупок</b></td><td><b>5%</b> с ТО повторных покупок партнёров. START — 3 уровня, STANDART — 6, PREMIUM — 9. Минимум 30 PV.</td><td>5% с ТО повторных</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section" data-section="calc">
+    <div class="section-tag"><svg class="i"><use href="#ic-calc"/></svg>Калькулятор</div>
+    <h2><svg class="i"><use href="#ic-calc"/></svg>Расчёт вознаграждений</h2>
+
+    <div class="calc-upgrade">
+      <div class="calc-upgrade-title">
+        <svg class="i"><use href="#ic-rocket"/></svg>
+        Расчёт по уровням
+      </div>
+      <div class="calc-upgrade-sub">
+        <b>Степ</b> = 50% × min(мин. пакет слева, мин. пакет справа).<br>
+        <b>Бинар</b> = 10% × min(остаток слева, остаток справа) — после вычета степа.<br>
+        <b>Лимит кабинета</b> = пакет кабинета. Красным — бинар, обрезанный лимитом.<br>
+        <b>Партнёры</b> округляются вниз до чётного числа — если введено нечётное, в расчёт идёт <b>(X − 1)</b>.
+      </div>
+
+      <div class="up-mode-toggle">
+        <button class="up-mode-btn active" data-up-mode="single" onclick="setUpMode('single')">
+          <svg class="i"><use href="#ic-user"/></svg>
+          Один кабинет
+        </button>
+        <button class="up-mode-btn" data-up-mode="triangle" onclick="setUpMode('triangle')">
+          <svg class="i"><use href="#ic-diamond"/></svg>
+          Золотой треугольник
+        </button>
+      </div>
+
+      <div id="upSingleBlock">
+        <div class="calc-upgrade-grid">
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-coin"/></svg>Мой пакет</label>
+            <select id="upBasePkg" class="premium-select">
+              <option value="250">$250 · START</option>
+              <option value="500" selected>$500 · STANDART</option>
+              <option value="2000">$2000 · PREMIUM</option>
+            </select>
+          </div>
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-people"/></svg>Приглашает каждый</label>
+            <input type="number" id="upPartners" value="2" min="2" max="20" step="1" class="premium-input">
+            <div class="field-hint" id="upPartnersHintSingle"></div>
+          </div>
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-tree"/></svg>Уровней для расчёта</label>
+            <input type="number" id="upDepth" value="12" min="1" max="31" step="1" class="premium-input">
+          </div>
+        </div>
+        <div class="calc-upgrade-grid" style="margin-top:6px;">
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-arrow-up"/></svg>Мой апгрейд до $</label>
+            <select id="upNewPkg" class="premium-select">
+              <option value="500" selected>$500</option>
+              <option value="2000">$2000</option>
+            </select>
+          </div>
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-crown"/></svg>С какого уровня</label>
+            <input type="number" id="upLvl" value="4" min="1" max="31" step="1" class="premium-input">
+          </div>
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-check"/></svg>Учитывать апгрейд</label>
+            <label style="margin-top:14px; color:#F7F4EA;">
+              <input type="checkbox" id="upEnabledSingle" checked>
+              <span style="color:#F7F4EA;">Вкл / выкл</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div id="upTriBlock" style="display:none;">
+        <div class="calc-upgrade-grid">
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-crown"/></svg>Пакет ГОЛОВЫ</label>
+            <select id="upHeadPkg" class="premium-select">
+              <option value="250">$250 · START</option>
+              <option value="500" selected>$500 · STANDART</option>
+              <option value="2000">$2000 · PREMIUM</option>
+            </select>
+          </div>
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-diamond"/></svg>Пакет ЛП</label>
+            <select id="upSideLeftPkg" class="premium-select">
+              <option value="250" selected>$250 · START</option>
+              <option value="500">$500 · STANDART</option>
+              <option value="2000">$2000 · PREMIUM</option>
+            </select>
+          </div>
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-diamond"/></svg>Пакет ПП</label>
+            <select id="upSideRightPkg" class="premium-select">
+              <option value="250">$250 · START</option>
+              <option value="500" selected>$500 · STANDART</option>
+              <option value="2000">$2000 · PREMIUM</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-upgrade-grid" style="margin-top:6px;">
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-tree"/></svg>Уровней для расчёта</label>
+            <input type="number" id="upTriDepth" value="9" min="1" max="31" step="1" class="premium-input">
+          </div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="calc-upgrade-grid" style="grid-template-columns: repeat(3, 1fr); background: rgba(247,244,234,0.05); padding: 14px; border-radius: 12px; margin-bottom: 18px;">
+          <div style="grid-column: 1 / -1; text-align: center; font-size: 12px; color: #E85D04; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">
+            Апгрейд моих кабинетов
+          </div>
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-crown"/></svg>Голова → до $</label>
+            <select id="upHeadNewPkg" class="premium-select">
+              <option value="500" selected>$500</option>
+              <option value="2000">$2000</option>
+            </select>
+          </div>
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-diamond"/></svg>ЛП → до $</label>
+            <select id="upSideLeftNewPkg" class="premium-select">
+              <option value="500" selected>$500</option>
+              <option value="2000">$2000</option>
+            </select>
+          </div>
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-diamond"/></svg>ПП → до $</label>
+            <select id="upSideRightNewPkg" class="premium-select">
+              <option value="500" selected>$500</option>
+              <option value="2000">$2000</option>
+            </select>
+          </div>
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-crown"/></svg>Ур. апгрейда головы</label>
+            <input type="number" id="upHeadLvl" value="4" min="1" max="31" step="1" class="premium-input">
+          </div>
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-diamond"/></svg>Ур. апгрейда ЛП</label>
+            <input type="number" id="upSideLeftLvl" value="4" min="1" max="31" step="1" class="premium-input">
+          </div>
+          <div>
+            <label class="step-label-btn"><svg class="i"><use href="#ic-diamond"/></svg>Ур. апгрейда ПП</label>
+            <input type="number" id="upSideRightLvl" value="4" min="1" max="31" step="1" class="premium-input">
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label class="step-label-btn"><svg class="i"><use href="#ic-check"/></svg>Учитывать апгрейд</label>
+            <label style="margin-top:8px; color:#F7F4EA;">
+              <input type="checkbox" id="upEnabled" checked>
+              <span style="color:#F7F4EA;">Вкл / выкл</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="up-action">
+        <button class="gold-btn" style="padding:16px 36px; font-size:15px;" onclick="calcUpgrade()">
+          <svg class="i"><use href="#ic-calc"/></svg>
+          Рассчитать
+        </button>
+      </div>
+
+      <div class="up-result" id="upResult" style="display:none;">
+        <div class="up-card">
+          <div class="up-card-title"><svg class="i"><use href="#ic-trophy"/></svg>Итоги расчёта</div>
+          <div class="up-totals">
+            <div class="up-tot-item"><div class="lbl">Степ всего</div><div class="val" id="up-total-step">$0</div></div>
+            <div class="up-tot-item"><div class="lbl">Бинар всего</div><div class="val" id="up-total-bin">$0</div></div>
+            <div class="up-tot-item hl"><div class="lbl">На счёт всего</div><div class="val" id="up-total-sum">$0</div></div>
+          </div>
+          <div class="up-split">
+            <div class="up-split-item">
+              <div class="lbl">Кэшбэк на бонусный счёт · 20%</div>
+              <div class="val" id="up-total-cashback">$0</div>
+            </div>
+            <div class="up-split-item">
+              <div class="lbl">На карту · 80%</div>
+              <div class="val" id="up-total-card">$0</div>
+            </div>
+          </div>
+          <div class="up-note" id="upNote"></div>
+        </div>
+
+        <div class="table-landscape" id="upTableWrap">
+          <table class="up-table" id="upTable">
+            <thead>
+              <tr id="upTheadRow">
+                <th>Уро-<br>вень</th>
+                <th>Количество<br>кабинетов</th>
+                <th>Пакет</th>
+                <th>Степ</th>
+                <th>Бинар</th>
+                <th>Итог</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="pdf-actions-row">
+          <button class="gold-btn" onclick="printTableOnly()">
+            <svg class="i"><use href="#ic-pdf"/></svg>
+            Скачать PDF — только расчёт
+          </button>
+          <button class="gold-btn alt" onclick="window.print()">
+            <svg class="i"><use href="#ic-pdf"/></svg>
+            Сохранить весь файл в PDF
+          </button>
+        </div>
+        <div class="up-pdf-hint">
+          Ctrl+P / ⌘+P → «Сохранить как PDF», ориентация — альбомная, включи «Фон и графика».
+        </div>
+
+        <div class="chart-wrap">
+          <div class="chart-title"><svg class="i"><use href="#ic-trophy"/></svg>Динамика по уровням</div>
+          <canvas id="upChart"></canvas>
+        </div>
+
+        <div class="up-disclaimer">
+          <svg class="i"><use href="#ic-info"/></svg>
+          <div>
+            <b>Калькулятор носит информационный характер.</b>
+            Суммы могут меняться в зависимости от построенной структуры, активности партнёров и лимитов кабинетов.
+            Расчёт не является публичной офертой и не гарантирует доход.
+          </div>
+        </div>
+
+        <div class="table-footnote" style="margin-top:12px;">
+          <b>Степ</b> = 50% × min(мин. пакет слева, мин. пакет справа).<br>
+          <b>Бинар</b> = 10% × min(остаток слева, остаток справа) после степа.<br>
+          <b>Кэшбэк 20%</b> — на бонусный счёт, <b>80%</b> — на карту.<br>
+          <b>Красным</b> выделен бинар, обрезанный лимитом кабинета.
+        </div>
+
+        <div class="rules-block">
+          <div class="r-title"><svg class="i"><use href="#ic-info"/></svg>Правила расчёта</div>
+          <ol>
+            <li><b>1 уровень</b> — пара ЛП / ПП. Голова получает степ = 50% × min(пакет ЛП, пакет ПП).</li>
+            <li><b>Со 2 уровня</b> у головы платится степ + бинар. У плеч — тоже, если есть пара.</li>
+            <li><b>Партнёры</b> повторяют структуру треугольника: чётные уровни — головы (пакет головы), нечётные — парами [пакет ЛП, пакет ПП].</li>
+            <li><b>Степ</b> = 50% × min(минимальный пакет слева, минимальный пакет справа).</li>
+            <li><b>Бинар</b> = 10% × min(остаток слева, остаток справа) после вычета степа.</li>
+            <li><b>Лимит</b> = пакет моего кабинета. Если степ + бинар больше лимита — излишек теряется.</li>
+            <li><b>Кэшбэк 20%</b> от суммы на счёт — на бонусный счёт, <b>80%</b> — на карту.</li>
+            <li><b>Партнёры округляются вниз до чётного</b>: если введено нечётное X, в расчёт идёт (X − 1).</li>
+          </ol>
+        </div>
+
+        <div class="rep-block">
+          <div class="rep-block-title">
+            <svg class="i"><use href="#ic-wallet"/></svg>
+            Калькулятор ТО от повторных покупок
+          </div>
+          <div class="rep-block-sub">
+            5% от ТО повторных покупок ваших партнёров. Минимум <b>30 PV</b>.<br>
+            Кэшбэк 20% — на бонусный счёт, 80% — на карту.
+          </div>
+
+          <div class="rep-controls">
+            <div>
+              <label class="step-label-btn"><svg class="i"><use href="#ic-people"/></svg>Партнёров (общее)</label>
+              <input type="number" id="repPartners" value="100" min="0" step="1" class="premium-input">
+            </div>
+            <div>
+              <label class="step-label-btn"><svg class="i"><use href="#ic-moneybag"/></svg>Сумма повторки, PV</label>
+              <input type="number" id="repAvg" value="30" min="30" step="1" class="premium-input">
+            </div>
+          </div>
+
+          <div class="rep-action">
+            <button class="rep-random-btn" onclick="randomizeRepeats()">
+              <svg class="i"><use href="#ic-calc"/></svg>
+              Рассчитать
+            </button>
+          </div>
+
+          <div class="rep-result-grid" id="repResultGrid" style="display:none;">
+            <div class="rep-res-item"><div class="lbl">Уровней с повторками</div><div class="val" id="rep-lvl-count">0</div></div>
+            <div class="rep-res-item"><div class="lbl">Всего партнёров</div><div class="val" id="rep-total-cab">0</div></div>
+            <div class="rep-res-item"><div class="lbl">Оборот повторок</div><div class="val" id="rep-turnover">$0</div></div>
+            <div class="rep-res-item hl"><div class="lbl">5% доход</div><div class="val" id="rep-income">$0</div></div>
+          </div>
+
+          <div class="rep-note" id="repNote" style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" data-section="quals">
+    <div class="section-tag"><svg class="i"><use href="#ic-trophy"/></svg>Ранги</div>
+    <h2><svg class="i"><use href="#ic-trophy"/></svg>Квалификации WHIEDA</h2>
+
+    <div class="quals-grid">
+      <div class="qual-card">
+        <div class="qual-name"><svg class="i"><use href="#ic-star"/></svg>DIRECTOR</div>
+        <div class="qual-turnover">Оборот 10 000 PV (5 000 PV/ 5 000 PV)</div>
+        <div class="qual-bonus"><svg class="i"><use href="#ic-ticket"/></svg>Туристический бонус $100/месяц</div>
+        <div class="qual-pack">STANDART</div>
+      </div>
+
+      <div class="qual-card">
+        <div class="qual-name"><svg class="i"><use href="#ic-star"/></svg>REGIONAL DIRECTOR</div>
+        <div class="qual-turnover">Оборот 20 000 PV (10 000 PV/ 10 000 PV)</div>
+        <div class="qual-bonus"><svg class="i"><use href="#ic-ticket"/></svg>Туристический бонус $100/месяц</div>
+        <div class="qual-pack">STANDART</div>
+      </div>
+
+      <div class="qual-card">
+        <div class="qual-name"><svg class="i"><use href="#ic-car"/></svg>NATIONAL DIRECTOR</div>
+        <div class="qual-turnover">Оборот 60 000 PV (30 000 PV/ 30 000 PV)</div>
+        <div class="qual-bonus"><svg class="i"><use href="#ic-ticket"/></svg>Автобонус $500/месяц</div>
+        <div class="qual-bonus"><svg class="i"><use href="#ic-ticket"/></svg>1% от ТО повторных покупок/месяц</div>
+        <div class="qual-pack">PREMIUM</div>
+      </div>
+
+      <div class="qual-card">
+        <div class="qual-name"><svg class="i"><use href="#ic-globe"/></svg>INTERNATIONAL DIRECTOR</div>
+        <div class="qual-turnover">Оборот 100 000 PV (50 000 PV / 50 000 PV)</div>
+        <div class="qual-bonus"><svg class="i"><use href="#ic-diamond"/></svg>1% от Евразийского товарооборота/месяц</div>
+        <div class="qual-bonus"><svg class="i"><use href="#ic-ticket"/></svg>1% от ТО повторных покупок/месяц</div>
+        <div class="qual-pack">PREMIUM</div>
+      </div>
+
+      <div class="qual-card">
+        <div class="qual-name"><svg class="i"><use href="#ic-globe"/></svg>CONTINENTAL DIRECTOR</div>
+        <div class="qual-turnover">Оборот 200 000 PV (100 000 PV / 100 000 PV)</div>
+        <div class="qual-bonus"><svg class="i"><use href="#ic-diamond"/></svg>1% от Евразийского товарооборота/месяц</div>
+        <div class="qual-bonus"><svg class="i"><use href="#ic-ticket"/></svg>1% от ТО повторных покупок/месяц</div>
+        <div class="qual-pack">PREMIUM</div>
+      </div>
+
+      <div class="qual-card">
+        <div class="qual-name"><svg class="i"><use href="#ic-globe"/></svg>WORLD DIRECTOR</div>
+        <div class="qual-turnover">Оборот 400 000 PV (200 000 PV / 200 000 PV)</div>
+        <div class="qual-bonus"><svg class="i"><use href="#ic-diamond"/></svg>1% от Евразийского товарооборота/месяц</div>
+        <div class="qual-bonus"><svg class="i"><use href="#ic-ticket"/></svg>1% от ТО повторных покупок/месяц</div>
+        <div class="qual-pack">PREMIUM</div>
+      </div>
+
+      <div class="qual-card">
+        <div class="qual-name"><svg class="i"><use href="#ic-crown"/></svg>GLOBAL DIRECTOR</div>
+        <div class="qual-turnover">Оборот 2 000 000 PV (1 000 000 PV / 1 000 000 PV)</div>
+        <div class="qual-bonus"><svg class="i"><use href="#ic-globe"/></svg>0,5% от Мирового товарооборота/год</div>
+        <div class="qual-pack">PREMIUM</div>
+      </div>
+
+      <div class="qual-card">
+        <div class="qual-name"><svg class="i"><use href="#ic-award"/></svg>AMBASSADOR</div>
+        <div class="qual-turnover">GLOBAL DIRECTOR / GLOBAL DIRECTOR</div>
+        <div class="qual-bonus"><svg class="i"><use href="#ic-globe"/></svg>0,5% от Мирового товарооборота/год</div>
+        <div class="qual-pack">PREMIUM</div>
+      </div>
+    </div>
+
+    <div class="quals-footer">
+      <svg class="i"><use href="#ic-star"/></svg>
+      <div><b>Преимущества:</b> быстрые выплаты · квалификационные бонусы суммируются · остаток бонусов и ранги сохраняются · без обязательных покупок.</div>
+    </div>
+  </div>
+
+  <div class="section" data-section="packages">
+    <div class="section-tag">
+      <svg class="i"><use href="#ic-walk"/></svg>
+      Бонус активности
+    </div>
+    <h2><svg class="i"><use href="#ic-walk"/></svg>Шагомер</h2>
+    <div class="table-landscape table-narrow-steps">
+      <table class="tbl">
+        <thead><tr><th>Условие</th><th>Награда</th></tr></thead>
+        <tbody>
+          <tr><td>10 000+ шагов в день</td><td>$10 на бонусный счёт</td></tr>
+          <tr><td>7 дней подряд по 10 000 шагов</td><td>+$30 бонусом</td></tr>
+          <tr><td>28 дней подряд по 10 000 шагов</td><td>+$100 бонусом</td></tr>
+          <tr class="total"><td>ИТОГО за 28 дней на 1 кабинет</td><td>$500</td></tr>
+          <tr class="total"><td>ИТОГО за 28 дней на 3 кабинета</td><td>$1500</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section" data-section="schema">
+    <div class="section-tag"><svg class="i"><use href="#ic-tree"/></svg>Структура</div>
+    <h2><svg class="i"><use href="#ic-tree"/></svg>Схема до 9 уровня</h2>
+    <div class="schema-wrap">
+      <svg viewBox="0 0 1000 960" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема структуры">
+        <defs>
+          <radialGradient id="gNodeBig" cx="35%" cy="28%" r="72%">
+            <stop offset="0%" stop-color="#ffb870"/>
+            <stop offset="45%" stop-color="#E85D04"/>
+            <stop offset="100%" stop-color="#7a2f00"/>
+          </radialGradient>
+          <radialGradient id="gNodeMid" cx="35%" cy="28%" r="72%">
+            <stop offset="0%" stop-color="#ffd0a0"/>
+            <stop offset="50%" stop-color="#ff9030"/>
+            <stop offset="100%" stop-color="#b84700"/>
+          </radialGradient>
+          <radialGradient id="gNodeSmall" cx="35%" cy="28%" r="72%">
+            <stop offset="0%" stop-color="#ffe0b8"/>
+            <stop offset="55%" stop-color="#ffa040"/>
+            <stop offset="100%" stop-color="#E85D04"/>
+          </radialGradient>
+          <linearGradient id="gBadge" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0B2545"/>
+            <stop offset="100%" stop-color="#071A33"/>
+          </linearGradient>
+          <linearGradient id="gBar" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F7F4EA"/>
+            <stop offset="100%" stop-color="#eae7d6"/>
+          </linearGradient>
+        </defs>
+
+        <g font-size="11" font-weight="800" fill="#0B2545" font-family="Arial, sans-serif" letter-spacing="1">
+          <text x="14" y="90">LEVEL 0</text>
+          <text x="14" y="215">LEVEL 1</text>
+          <text x="14" y="350">LEVEL 2</text>
+          <text x="14" y="465">LEVEL 3</text>
+          <text x="14" y="545">LEVEL 4</text>
+          <text x="14" y="615">LEVEL 5</text>
+          <text x="14" y="685">LEVEL 6</text>
+          <text x="14" y="755">LEVEL 7</text>
+          <text x="14" y="825">LEVEL 8</text>
+          <text x="14" y="895">LEVEL 9</text>
+        </g>
+
+        <g stroke="#c4d8ef" stroke-width="1" stroke-dasharray="3 4" opacity="0.85">
+          <line x1="100" y1="125" x2="980" y2="125"/>
+          <line x1="100" y1="250" x2="980" y2="250"/>
+          <line x1="100" y1="385" x2="980" y2="385"/>
+          <line x1="100" y1="500" x2="980" y2="500"/>
+          <line x1="100" y1="570" x2="980" y2="570"/>
+          <line x1="100" y1="640" x2="980" y2="640"/>
+          <line x1="100" y1="710" x2="980" y2="710"/>
+          <line x1="100" y1="780" x2="980" y2="780"/>
+          <line x1="100" y1="850" x2="980" y2="850"/>
+        </g>
+
+        <g stroke="#1E4B8F" stroke-width="1.3" fill="none" opacity="0.8">
+          <line x1="500" y1="85" x2="290" y2="205"/>
+          <line x1="500" y1="85" x2="710" y2="205"/>
+          <line x1="290" y1="215" x2="180" y2="340"/>
+          <line x1="290" y1="215" x2="400" y2="340"/>
+          <line x1="710" y1="215" x2="600" y2="340"/>
+          <line x1="710" y1="215" x2="810" y2="340"/>
+          <line x1="180" y1="350" x2="140" y2="455"/>
+          <line x1="180" y1="350" x2="240" y2="455"/>
+          <line x1="400" y1="350" x2="340" y2="455"/>
+          <line x1="400" y1="350" x2="440" y2="455"/>
+          <line x1="600" y1="350" x2="560" y2="455"/>
+          <line x1="600" y1="350" x2="660" y2="455"/>
+          <line x1="810" y1="350" x2="740" y2="455"/>
+          <line x1="810" y1="350" x2="850" y2="455"/>
+          <line x1="500" y1="470" x2="500" y2="500" stroke-dasharray="3 3" opacity="0.5"/>
+        </g>
+
+        <rect x="438" y="12" width="124" height="22" rx="11" fill="url(#gBadge)"/>
+        <text x="500" y="27" text-anchor="middle" font-size="9" font-weight="900" fill="#E85D04" letter-spacing="1.6">Я ВЕРШИНА</text>
+
+        <circle cx="500" cy="85" r="30" fill="url(#gNodeBig)" stroke="#fff" stroke-width="1.5"/>
+        <text x="500" y="82" text-anchor="middle" font-size="14" font-weight="900" fill="#fff">Голова</text>
+        <text x="500" y="96" text-anchor="middle" font-size="8" font-weight="700" fill="#fff">500 PV</text>
+
+        <circle cx="290" cy="210" r="28" fill="url(#gNodeBig)" stroke="#fff" stroke-width="1.5"/>
+        <text x="290" y="214" text-anchor="middle" font-size="16" font-weight="900" fill="#fff">ЛП</text>
+        <text x="290" y="228" text-anchor="middle" font-size="8" font-weight="700" fill="#fff">500 PV</text>
+
+        <circle cx="710" cy="210" r="28" fill="url(#gNodeBig)" stroke="#fff" stroke-width="1.5"/>
+        <text x="710" y="214" text-anchor="middle" font-size="16" font-weight="900" fill="#fff">ПП</text>
+        <text x="710" y="228" text-anchor="middle" font-size="8" font-weight="700" fill="#fff">500 PV</text>
+
+        <circle cx="180" cy="345" r="24" fill="url(#gNodeMid)" stroke="#fff" stroke-width="1.5"/>
+        <text x="180" y="350" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">П1</text>
+
+        <circle cx="400" cy="345" r="24" fill="url(#gNodeMid)" stroke="#fff" stroke-width="1.5"/>
+        <text x="400" y="350" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">П2</text>
+
+        <circle cx="600" cy="345" r="24" fill="url(#gNodeMid)" stroke="#fff" stroke-width="1.5"/>
+        <text x="600" y="350" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">П3</text>
+
+        <circle cx="810" cy="345" r="24" fill="url(#gNodeMid)" stroke="#fff" stroke-width="1.5"/>
+        <text x="810" y="350" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">П4</text>
+
+        <circle cx="140" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
+        <text x="140" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П5</text>
+        <circle cx="240" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
+        <text x="240" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П6</text>
+        <circle cx="340" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
+        <text x="340" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П7</text>
+        <circle cx="440" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
+        <text x="440" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П8</text>
+        <circle cx="560" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
+        <text x="560" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П9</text>
+        <circle cx="660" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
+        <text x="660" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П10</text>
+        <circle cx="740" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
+        <text x="740" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П11</text>
+        <circle cx="850" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
+        <text x="850" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П12</text>
+
+        <rect x="100" y="520" width="880" height="42" rx="21" fill="url(#gBar)" stroke="#c4d8ef" stroke-dasharray="3 3"/>
+        <text x="540" y="547" text-anchor="middle" font-size="11" font-weight="800" fill="#0B2545" letter-spacing="1.4">LEVEL 4 · 16 КАБИНЕТОВ · 500 PV</text>
+
+        <rect x="100" y="590" width="880" height="42" rx="21" fill="url(#gBar)" stroke="#c4d8ef" stroke-dasharray="3 3"/>
+        <text x="540" y="617" text-anchor="middle" font-size="11" font-weight="800" fill="#0B2545" letter-spacing="1.4">LEVEL 5 · 32 КАБИНЕТА · 500 PV</text>
+
+        <rect x="100" y="660" width="880" height="42" rx="21" fill="url(#gBar)" stroke="#c4d8ef" stroke-dasharray="3 3"/>
+        <text x="540" y="687" text-anchor="middle" font-size="11" font-weight="800" fill="#0B2545" letter-spacing="1.4">LEVEL 6 · 64 КАБИНЕТА · 500 PV</text>
+
+        <rect x="100" y="730" width="880" height="42" rx="21" fill="url(#gBar)" stroke="#c4d8ef" stroke-dasharray="3 3"/>
+        <text x="540" y="757" text-anchor="middle" font-size="11" font-weight="800" fill="#0B2545" letter-spacing="1.4">LEVEL 7 · 128 КАБИНЕТОВ · 500 PV</text>
+
+        <rect x="100" y="800" width="880" height="42" rx="21" fill="url(#gBar)" stroke="#c4d8ef" stroke-dasharray="3 3"/>
+        <text x="540" y="827" text-anchor="middle" font-size="11" font-weight="800" fill="#0B2545" letter-spacing="1.4">LEVEL 8 · 256 КАБИНЕТОВ · 500 PV</text>
+
+        <rect x="100" y="870" width="880" height="42" rx="21" fill="url(#gBar)" stroke="#c4d8ef" stroke-dasharray="3 3"/>
+        <text x="540" y="897" text-anchor="middle" font-size="11" font-weight="800" fill="#0B2545" letter-spacing="1.4">LEVEL 9 · 512 КАБИНЕТОВ · 500 PV</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="section no-print" style="text-align: center; border-bottom: none;">
+    <button class="btn dark" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0B2545,#071A33);color:#fff;border:none;padding:15px 34px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;" onclick="window.print()">
+      Сохранить весь файл в PDF
+    </button>
+  </div>
+
+  <div class="footer">
+    <b>WHIEDA</b> · Маркетинг-план «Золотой треугольник · от 750 PV»
+  </div>
+
+  <div class="legal">
+    <div class="legal-inner">
+      <b>© 2026. Все права защищены.</b><br>
+      Документ является личной интеллектуальной собственностью автора.
+      <br><br>
+      <b>Запрещается без предварительного письменного разрешения автора:</b><br>
+      копирование (полное или частичное), воспроизведение, тиражирование, распространение, публикация, размещение в открытых источниках и социальных сетях, пересылка любыми способами (в том числе по электронной почте и в мессенджерах), передача третьим лицам, продажа, перепродажа, сдача в аренду, обмен, дарение, перевод на другие языки, изменение, переработка, адаптация, компиляция, декомпиляция, извлечение данных, использование в коммерческих целях и любое иное использование, не согласованное с автором в письменной форме.
+      <br><br>
+      Любое нарушение указанных условий является нарушением исключительных прав автора и влечёт за собой гражданскую, административную и уголовную ответственность в соответствии с действующим законодательством. Виновное лицо обязано возместить автору причинённые убытки, включая упущенную выгоду и компенсацию за нарушение исключительных прав.
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function createCoins() {
+  const bg = document.getElementById('coinsBg');
+  if (!bg) return;
+  const count = window.innerWidth < 900 ? 14 : 26;
+  for (let i = 0; i < count; i++) {
+    const coin = document.createElement('div');
+    coin.className = 'coin';
+    const r = Math.random();
+    if (r < 0.3) coin.classList.add('small');
+    else if (r > 0.8) coin.classList.add('large');
+    coin.style.left = (Math.random() * 100) + '%';
+    coin.style.animationDuration = (8 + Math.random() * 10) + 's';
+    coin.style.animationDelay = (Math.random() * 10) + 's';
+    bg.appendChild(coin);
+  }
+})();
+
+function toggleTheme() {
+  document.body.classList.toggle('dark-theme');
+  const btn = document.getElementById('themeBtn');
+  const dark = document.body.classList.contains('dark-theme');
+  btn.innerHTML = dark ? '<svg class="i"><use href="#ic-sun"/></svg>' : '<svg class="i"><use href="#ic-moon"/></svg>';
+}
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const target = tab.dataset.tab;
+    document.querySelectorAll('.section').forEach(s => {
+      if (target === 'all') s.classList.remove('hidden');
+      else s.classList.toggle('hidden', s.dataset.section !== target);
+    });
+  });
+});
+
+function fmt(n) {
+  const v = Number(n);
+  if (!isFinite(v)) return '$0';
+  return '$' + Math.round(v).toLocaleString('ru-RU');
+}
+
+function normalizePartners(x) {
+  let n = Math.max(0, Math.floor(Number(x) || 0));
+  if (n % 2 !== 0) n -= 1;
+  return n;
+}
+
+function updatePartnersHint() {
+  const el = document.getElementById('upPartners');
+  const hint = document.getElementById('upPartnersHintSingle');
+  if (!el || !hint) return;
+  const raw = Math.max(0, Math.floor(Number(el.value) || 0));
+  const eff = normalizePartners(raw);
+  if (raw === 0) {
+    hint.className = 'field-hint warn';
+    hint.innerHTML = '<svg class="i"><use href="#ic-info"/></svg>Укажите хотя бы 2 партнёра.';
+  } else if (raw % 2 !== 0) {
+    hint.className = 'field-hint warn';
+    hint.innerHTML = '<svg class="i"><use href="#ic-info"/></svg>Введено нечётное (' + raw + '). В расчёт идёт <b>' + eff + '</b> (X − 1).';
+  } else {
+    hint.className = 'field-hint';
+    hint.innerHTML = '<svg class="i"><use href="#ic-check"/></svg>В расчёт идёт <b>' + eff + '</b> партнёров.';
+  }
+}
+
+let upMode = 'single';
+function setUpMode(mode) {
+  upMode = mode;
+  document.querySelectorAll('.up-mode-btn').forEach(b => b.classList.toggle('active', b.dataset.upMode === mode));
+  document.getElementById('upSingleBlock').style.display = (mode === 'single') ? '' : 'none';
+  document.getElementById('upTriBlock').style.display = (mode === 'triangle') ? '' : 'none';
+  calcUpgrade();
+}
+
+const REPEAT_SHARE = 0.20, REPEAT_RATE = 0.05;
+
+function pkgAtLevel(basePkg, newPkg, upLvl, upEnabled, lvl) {
+  return (upEnabled && lvl >= upLvl) ? Math.max(basePkg, newPkg) : basePkg;
+}
+
+function safeMin(arr) {
+  let m = Infinity;
+  for (let i = 0; i < arr.length; i++) {
+    const v = Number(arr[i]);
+    if (isFinite(v) && v < m) m = v;
+  }
+  return isFinite(m) ? m : 0;
+}
+function safeSum(arr) {
+  let s = 0;
+  for (let i = 0; i < arr.length; i++) {
+    const v = Number(arr[i]);
+    if (isFinite(v)) s += v;
+  }
+  return s;
+}
+
+function calcNode(listLeft, listRight, myLimit, includeBin) {
+  if (!listLeft || !listRight || listLeft.length === 0 || listRight.length === 0)
+    return { step: 0, binRaw: 0, bin: 0, paid: 0, binLost: 0 };
+  const minL = safeMin(listLeft);
+  const minR = safeMin(listRight);
+  const step = 0.5 * Math.min(minL, minR);
+  const remLeft = safeSum(listLeft) - minL;
+  const remRight = safeSum(listRight) - minR;
+  let binRaw = 0;
+  if (includeBin && remLeft > 0 && remRight > 0) binRaw = 0.10 * Math.min(remLeft, remRight);
+  const restLimit = Math.max(0, myLimit - step);
+  const bin = Math.min(binRaw, restLimit);
+  return { step, binRaw, bin, paid: step + bin, binLost: binRaw - bin };
+}
+
+function partnerList(lvl, count, headPkg, sideLeftPkg, sideRightPkg) {
+  const list = [];
+  if (lvl < 2) return list;
+  const safeCount = Math.min(count, 10000);
+  if (lvl % 2 === 0) {
+    for (let i = 0; i < safeCount; i++) list.push(headPkg);
+  } else {
+    for (let i = 0; i < safeCount; i++) list.push(i % 2 === 0 ? sideLeftPkg : sideRightPkg);
+  }
+  return list;
+}
+
+function countsOnLevel(lvl) {
+  if (lvl < 2) return { head: 0, side: 0 };
+  const head = Math.pow(2, lvl - 1);
+  const side = Math.pow(2, lvl - 2);
+  return {
+    head: Number.isFinite(head) ? head : 1e15,
+    side: Number.isFinite(side) ? side : 1e15
+  };
+}
+
+function calcTriangle(d) {
+  const rows = [];
+  let totalStep = 0, totalBin = 0, totalPaid = 0;
+  let tHeadStep = 0, tHeadBin = 0;
+  let tLeftStep = 0, tLeftBin = 0;
+  let tRightStep = 0, tRightBin = 0;
+
+  for (let lvl = 1; lvl <= d.depth; lvl++) {
+    const c = countsOnLevel(lvl);
+    const headPkg = pkgAtLevel(d.headBase, d.headNew, d.headUpLvl, d.upEnabled, lvl);
+    const leftPkg = pkgAtLevel(d.sideLeftBase, d.sideLeftNew, d.sideLeftUpLvl, d.upEnabled, lvl);
+    const rightPkg = pkgAtLevel(d.sideRightBase, d.sideRightNew, d.sideRightUpLvl, d.upEnabled, lvl);
+
+    let headRes;
+    if (lvl === 1) headRes = calcNode([leftPkg], [rightPkg], headPkg, false);
+    else {
+      const listHead = partnerList(lvl, c.head, d.headBase, d.sideLeftBase, d.sideRightBase);
+      headRes = calcNode(listHead, listHead, headPkg, true);
+    }
+
+    let leftRes;
+    if (lvl === 1) leftRes = { step: 0, binRaw: 0, bin: 0, paid: 0, binLost: 0 };
+    else {
+      const list = partnerList(lvl, c.side, d.headBase, d.sideLeftBase, d.sideRightBase);
+      leftRes = calcNode(list, list, leftPkg, true);
+    }
+
+    let rightRes;
+    if (lvl === 1) rightRes = { step: 0, binRaw: 0, bin: 0, paid: 0, binLost: 0 };
+    else {
+      const list = partnerList(lvl, c.side, d.headBase, d.sideLeftBase, d.sideRightBase);
+      rightRes = calcNode(list, list, rightPkg, true);
+    }
+
+    const step = headRes.step + leftRes.step + rightRes.step;
+    const binPaid = headRes.bin + leftRes.bin + rightRes.bin;
+    const paid = headRes.paid + leftRes.paid + rightRes.paid;
+
+    totalStep += step;
+    totalBin += binPaid;
+    totalPaid += paid;
+    tHeadStep += headRes.step; tHeadBin += headRes.bin;
+    tLeftStep += leftRes.step; tLeftBin += leftRes.bin;
+    tRightStep += rightRes.step; tRightBin += rightRes.bin;
+
+    rows.push({
+      lvl, cabinets: Math.min(c.head * 2, 1e15),
+      headStep: headRes.step, headBin: headRes.bin, headBinLost: headRes.binLost,
+      leftStep: leftRes.step, leftBin: leftRes.bin, leftBinLost: leftRes.binLost,
+      rightStep: rightRes.step, rightBin: rightRes.bin, rightBinLost: rightRes.binLost,
+      step, binPaid, paid
+    });
+  }
+  return { rows, totalStep, totalBin, totalPaid,
+    tHeadStep, tHeadBin, tLeftStep, tLeftBin, tRightStep, tRightBin };
+}
+
+function calcSingle(d) {
+  const rows = [];
+  let totalStep = 0, totalBin = 0, totalPaid = 0;
+
+  const partnersEven = normalizePartners(d.partners);
+
+  for (let lvl = 1; lvl <= d.depth; lvl++) {
+    const myPkg = pkgAtLevel(d.myBase, d.myNew, d.upLvl, d.upEnabled, lvl);
+    const mult = Math.pow(2, lvl - 1);
+    const cabRaw = partnersEven * mult;
+    const cab = Number.isFinite(cabRaw) ? cabRaw : 1e15;
+
+    let step = 0, binRaw = 0;
+
+    if (lvl === 1) {
+      if (partnersEven >= 2) step = 0.5 * myPkg;
+      if (partnersEven >= 4) {
+        const leftCount = partnersEven / 2;
+        const rightCount = partnersEven / 2;
+        const leftRem = Math.max(0, leftCount * myPkg - myPkg);
+        const rightRem = Math.max(0, rightCount * myPkg - myPkg);
+        binRaw = 0.10 * Math.min(leftRem, rightRem);
+      }
+    } else {
+      if (cab >= 2) step = 0.5 * myPkg;
+      if (cab >= 4) {
+        const leftCount = Math.floor(cab / 2);
+        const rightCount = cab - leftCount;
+        const leftRem = Math.max(0, leftCount * myPkg - myPkg);
+        const rightRem = Math.max(0, rightCount * myPkg - myPkg);
+        binRaw = 0.10 * Math.min(leftRem, rightRem);
+      }
+    }
+
+    if (!Number.isFinite(binRaw)) binRaw = 1e15;
+
+    const restLimit = Math.max(0, myPkg - step);
+    const bin = Math.min(binRaw, restLimit);
+    const paid = step + bin;
+    totalStep += step;
+    totalBin += bin;
+    totalPaid += paid;
+    rows.push({ lvl, cabinets: cab, pkg: myPkg, step, bin, binRaw, binLost: binRaw - bin, paid });
+  }
+  return { rows, totalStep, totalBin, totalPaid };
+}
+
+let upChartInstance = null;
+function renderChart(result) {
+  const canvas = document.getElementById('upChart');
+  if (!canvas || typeof Chart === 'undefined') return;
+  const labels = result.rows.map(r => 'ур. ' + r.lvl);
+  let datasets;
+  if (upMode === 'triangle') {
+    datasets = [
+      { label: 'Степ головы', data: result.rows.map(r => Math.round(r.headStep)), borderColor: '#E85D04', borderWidth: 2, tension: 0.3, fill: false, pointRadius: 2 },
+      { label: 'Бинар головы', data: result.rows.map(r => Math.round(r.headBin)), borderColor: '#ffb870', borderWidth: 2, tension: 0.3, fill: false, pointRadius: 2, borderDash: [5,3] },
+      { label: 'Степ ЛП', data: result.rows.map(r => Math.round(r.leftStep)), borderColor: '#9dd0ff', borderWidth: 2, tension: 0.3, fill: false, pointRadius: 2 },
+      { label: 'Бинар ЛП', data: result.rows.map(r => Math.round(r.leftBin)), borderColor: '#1E4B8F', borderWidth: 2, tension: 0.3, fill: false, pointRadius: 2, borderDash: [5,3] },
+      { label: 'Степ ПП', data: result.rows.map(r => Math.round(r.rightStep)), borderColor: '#F7F4EA', borderWidth: 2, tension: 0.3, fill: false, pointRadius: 2 },
+      { label: 'Бинар ПП', data: result.rows.map(r => Math.round(r.rightBin)), borderColor: '#2A9D8F', borderWidth: 2, tension: 0.3, fill: false, pointRadius: 2, borderDash: [5,3] }
+    ];
+  } else {
+    datasets = [
+      { label: 'Степ', data: result.rows.map(r => Math.round(r.step)), borderColor: '#E85D04', borderWidth: 2, tension: 0.3, fill: false, pointRadius: 2 },
+      { label: 'Бинар', data: result.rows.map(r => Math.round(r.bin)), borderColor: '#2A9D8F', borderWidth: 2, tension: 0.3, fill: false, pointRadius: 2 }
+    ];
+  }
+  if (upChartInstance) upChartInstance.destroy();
+  upChartInstance = new Chart(canvas.getContext('2d'), {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { labels: { color: '#F7F4EA', font: { size: 11, weight: '700' }, boxWidth: 14 } },
+        tooltip: { backgroundColor: 'rgba(7,26,51,0.95)', borderColor: 'rgba(232,93,4,0.7)', borderWidth: 1, titleColor: '#E85D04', bodyColor: '#F7F4EA',
+          callbacks: { label: ctx => ctx.dataset.label + ': $' + ctx.parsed.y.toLocaleString('ru-RU') } }
+      },
+      scales: {
+        x: { ticks: { color: 'rgba(247,244,234,0.8)', font: { size: 10 } }, grid: { color: 'rgba(232,93,4,0.12)' } },
+        y: { ticks: { color: 'rgba(247,244,234,0.8)', font: { size: 10 } }, grid: { color: 'rgba(232,93,4,0.12)' } }
+      }
+    }
+  });
+}
+
+function calcUpgrade() {
+  let result, modeLabel, pkgLabel;
+
+  if (upMode === 'single') {
+    const rawPartners = Math.max(2, +document.getElementById('upPartners').value || 2);
+    const partnersEven = normalizePartners(rawPartners);
+    const d = {
+      myBase: +document.getElementById('upBasePkg').value || 500,
+      myNew: +document.getElementById('upNewPkg').value || 500,
+      upLvl: Math.max(1, Math.min(31, +document.getElementById('upLvl').value || 4)),
+      partners: partnersEven,
+      depth: Math.max(1, Math.min(31, +document.getElementById('upDepth').value || 6)),
+      upEnabled: document.getElementById('upEnabledSingle').checked
+    };
+    result = calcSingle(d);
+    modeLabel = 'Один кабинет';
+    pkgLabel = 'Пакет $' + d.myBase + (d.upEnabled ? ' → $' + d.myNew + ' с ' + d.upLvl + '-го ур.' : '');
+    if (rawPartners !== partnersEven) {
+      pkgLabel += ' · партнёров: <b>' + rawPartners + ' → ' + partnersEven + '</b> (округлено до чётного)';
+    }
+  } else {
+    const d = {
+      headBase: +document.getElementById('upHeadPkg').value || 500,
+      sideLeftBase: +document.getElementById('upSideLeftPkg').value || 250,
+      sideRightBase: +document.getElementById('upSideRightPkg').value || 500,
+      headNew: +document.getElementById('upHeadNewPkg').value || 500,
+      sideLeftNew: +document.getElementById('upSideLeftNewPkg').value || 500,
+      sideRightNew: +document.getElementById('upSideRightNewPkg').value || 500,
+      headUpLvl: Math.max(1, Math.min(31, +document.getElementById('upHeadLvl').value || 4)),
+      sideLeftUpLvl: Math.max(1, Math.min(31, +document.getElementById('upSideLeftLvl').value || 4)),
+      sideRightUpLvl: Math.max(1, Math.min(31, +document.getElementById('upSideRightLvl').value || 4)),
+      depth: Math.max(1, Math.min(31, +document.getElementById('upTriDepth').value || 9)),
+      upEnabled: document.getElementById('upEnabled').checked
+    };
+    result = calcTriangle(d);
+    modeLabel = 'Золотой треугольник';
+    pkgLabel = 'Голова $' + d.headBase + ' · ЛП $' + d.sideLeftBase + ' · ПП $' + d.sideRightBase;
+  }
+
+  document.getElementById('up-total-step').textContent = fmt(result.totalStep);
+  document.getElementById('up-total-bin').textContent  = fmt(result.totalBin);
+  document.getElementById('up-total-sum').textContent  = fmt(result.totalPaid);
+
+  const cashback = result.totalPaid * 0.20;
+  const toCard   = result.totalPaid * 0.80;
+  document.getElementById('up-total-cashback').textContent = fmt(cashback);
+  document.getElementById('up-total-card').textContent     = fmt(toCard);
+
+  document.getElementById('upNote').innerHTML =
+    '<b>Режим:</b> ' + modeLabel + '.<br>' + pkgLabel + '<br>' +
+    'Степ: <b>' + fmt(result.totalStep) + '</b> · Бинар: <b>' + fmt(result.totalBin) + '</b>.<br>' +
+    '<b>На счёт (с учётом лимитов):</b> ' + fmt(result.totalPaid);
+
+  const thead = document.querySelector('#upTable thead');
+  const theadRow = document.getElementById('upTheadRow');
+  const tbody = document.querySelector('#upTable tbody');
+  tbody.innerHTML = '';
+  const oldSub = thead.querySelector('tr.sub-head');
+  if (oldSub) oldSub.remove();
+
+  if (upMode === 'triangle') {
+    theadRow.innerHTML =
+      '<th rowspan="2">Уро-<br>вень</th>' +
+      '<th rowspan="2">Количество<br>кабинетов</th>' +
+      '<th colspan="2">Голова</th>' +
+      '<th colspan="2">ЛП</th>' +
+      '<th colspan="2">ПП</th>' +
+      '<th rowspan="2">Итог</th>';
+    theadRow.insertAdjacentHTML('afterend',
+      '<tr class="sub-head">' +
+        '<th class="col-head">Степ</th><th class="col-head">Бинар</th>' +
+        '<th class="col-left">Степ</th><th class="col-left">Бинар</th>' +
+        '<th class="col-right">Степ</th><th class="col-right">Бинар</th>' +
+      '</tr>');
+
+    result.rows.forEach(r => {
+      const headCls = 'cell-head' + (r.headBinLost > 0 ? ' bin-lost' : '');
+      const leftCls = 'cell-left' + (r.leftBinLost > 0 ? ' bin-lost' : '');
+      const rightCls = 'cell-right' + (r.rightBinLost > 0 ? ' bin-lost' : '');
+      tbody.insertAdjacentHTML('beforeend',
+        '<tr>' +
+          '<td><b>' + r.lvl + '</b></td>' +
+          '<td>' + r.cabinets + '</td>' +
+          '<td class="cell-head">' + fmt(r.headStep) + '</td>' +
+          '<td class="' + headCls + '">' + fmt(r.headBin) + '</td>' +
+          '<td class="cell-left">' + fmt(r.leftStep) + '</td>' +
+          '<td class="' + leftCls + '">' + fmt(r.leftBin) + '</td>' +
+          '<td class="cell-right">' + fmt(r.rightStep) + '</td>' +
+          '<td class="' + rightCls + '">' + fmt(r.rightBin) + '</td>' +
+          '<td class="cell-total"><b>' + fmt(r.paid) + '</b></td>' +
+        '</tr>');
+    });
+
+    tbody.insertAdjacentHTML('beforeend',
+      '<tr class="total-row">' +
+        '<td colspan="2"><b>ИТОГО</b></td>' +
+        '<td>' + fmt(result.tHeadStep) + '</td>' +
+        '<td>' + fmt(result.tHeadBin) + '</td>' +
+        '<td>' + fmt(result.tLeftStep) + '</td>' +
+        '<td>' + fmt(result.tLeftBin) + '</td>' +
+        '<td>' + fmt(result.tRightStep) + '</td>' +
+        '<td>' + fmt(result.tRightBin) + '</td>' +
+        '<td>' + fmt(result.totalPaid) + '</td>' +
+      '</tr>');
+  } else {
+    theadRow.innerHTML =
+      '<th>Уро-<br>вень</th>' +
+      '<th>Количество<br>кабинетов</th>' +
+      '<th>Пакет</th>' +
+      '<th>Степ</th>' +
+      '<th>Бинар</th>' +
+      '<th>Итог</th>';
+    result.rows.forEach(r => {
+      const binCls = r.binLost > 0 ? 'bin-lost' : '';
+      tbody.insertAdjacentHTML('beforeend',
+        '<tr>' +
+          '<td><b>' + r.lvl + '</b></td>' +
+          '<td>' + r.cabinets + '</td>' +
+          '<td>$' + r.pkg + '</td>' +
+          '<td>' + fmt(r.step) + '</td>' +
+          '<td class="' + binCls + '">' + fmt(r.bin) + '</td>' +
+          '<td><b>' + fmt(r.paid) + '</b></td>' +
+        '</tr>');
+    });
+    tbody.insertAdjacentHTML('beforeend',
+      '<tr class="total-row">' +
+        '<td colspan="3"><b>ИТОГО</b></td>' +
+        '<td>' + fmt(result.totalStep) + '</td>' +
+        '<td>' + fmt(result.totalBin) + '</td>' +
+        '<td>' + fmt(result.totalPaid) + '</td>' +
+      '</tr>');
+  }
+  document.getElementById('upResult').style.display = '';
+  renderChart(result);
+}
+
+function printTableOnly() {
+  const table = document.getElementById('upTable');
+  if (!table) return;
+
+  const win = window.open('', '_blank', 'width=1200,height=800');
+  if (!win) { alert('Разрешите всплывающие окна, чтобы сохранить таблицу в PDF.'); return; }
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+      <meta charset="UTF-8">
+      <title>WHIEDA · Расчёт по уровням</title>
+      <style>
+        @page { size: A4 landscape; margin: 10mm; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body {
+          background: #ffffff;
+          color: #1F2937;
+          font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+          font-size: 11px;
+          padding: 0;
+        }
+        h1 { font-size: 15px; margin: 0 0 4px; color: #0B2545; letter-spacing: 0.5px; }
+        .sub { font-size: 10.5px; color: #1F2937; margin-bottom: 10px; }
+        .sub b { color: #0B2545; }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          border: 1.6px solid #0B2545;
+          font-size: 10.5px;
+        }
+        th, td {
+          padding: 6px 8px;
+          text-align: right;
+          border-bottom: 1px solid #a0a8b3;
+          white-space: nowrap;
+          color: #1F2937;
+        }
+        th {
+          background: #dde3d0;
+          color: #0B2545;
+          font-weight: 900;
+          font-size: 10px;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          border-bottom: 1.4px solid #0B2545;
+        }
+        td:first-child, td:nth-child(2) { text-align: center; }
+        th:nth-child(1), td:nth-child(1) { width: 70px; min-width: 70px; }
+        th:nth-child(2), td:nth-child(2) { width: 110px; min-width: 110px; }
+        tbody tr.total-row td {
+          background: #eef1e4;
+          color: #0B2545;
+          font-weight: 900;
+          border-top: 2px solid #0B2545;
+        }
+        th.col-head, td.cell-head  { color: #0B2545; }
+        th.col-left, td.cell-left  { color: #1f5f8b; }
+        th.col-right, td.cell-right { color: #E85D04; }
+        td.cell-total { color: #E85D04; font-weight: 900; }
+        td.bin-lost { color: #b02020 !important; font-weight: 900; }
+        thead tr.sub-head th {
+          background: #eef1e4;
+          color: #0B2545;
+          font-size: 9.5px;
+          padding: 5px 7px;
+          border-bottom: 1px solid #0B2545;
+        }
+        tr { page-break-inside: avoid; }
+        thead { display: table-header-group; }
+      </style>
+    </head>
+    <body>
+      <h1>WHIEDA · Расчёт по уровням</h1>
+      <div class="sub">Режим: <b>${upMode === 'triangle' ? 'Золотой треугольник' : 'Один кабинет'}</b> · Ориентация: альбомная (A4 landscape)</div>
+      ${table.outerHTML}
+    </body>
+    </html>
+  `;
+  win.document.open();
+  win.document.write(html);
+  win.document.close();
+  win.focus();
+  setTimeout(() => { win.print(); }, 350);
+}
+
+function calcRepeats() {
+  const N = Math.max(0, +document.getElementById('repPartners').value || 0);
+  const avg = Math.max(30, +document.getElementById('repAvg').value || 30);
+  const levelsCount = 9;
+
+  const turnover = N * avg * REPEAT_SHARE;
+  const income = turnover * REPEAT_RATE;
+
+  document.getElementById('rep-lvl-count').textContent = levelsCount;
+  document.getElementById('rep-total-cab').textContent  = Math.round(N).toLocaleString('ru-RU');
+  document.getElementById('rep-turnover').textContent   = fmt(turnover);
+  document.getElementById('rep-income').textContent     = fmt(income);
+
+  document.getElementById('repNote').innerHTML =
+    'Уровней с повторными покупками: <b>' + levelsCount + '</b>. ' +
+    'Партнёров: <b>' + Math.round(N).toLocaleString('ru-RU') + '</b>, сумма повторки: <b>' + avg + ' PV</b>.<br>' +
+    'Формула: <b>' + Math.round(N).toLocaleString('ru-RU') + ' × ' + avg + ' PV × 20% × 5%</b> = <b>' + fmt(income) + '</b>.';
+
+  document.getElementById('repResultGrid').style.display = '';
+  document.getElementById('repNote').style.display = '';
+}
+
+function randomizeRepeats() {
+  calcRepeats();
+}
+
+[
+  'upBasePkg','upPartners','upDepth','upNewPkg','upLvl','upEnabledSingle',
+  'upHeadPkg','upSideLeftPkg','upSideRightPkg','upTriDepth',
+  'upHeadNewPkg','upSideLeftNewPkg','upSideRightNewPkg',
+  'upHeadLvl','upSideLeftLvl','upSideRightLvl','upEnabled'
+].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('change', () => {
+      if (id === 'upPartners') updatePartnersHint();
+      const r = document.getElementById('upResult');
+      if (r && r.style.display !== 'none') calcUpgrade();
+    });
+    el.addEventListener('input', () => {
+      if (id === 'upPartners') updatePartnersHint();
+      const r = document.getElementById('upResult');
+      if (r && r.style.display !== 'none') calcUpgrade();
+    });
+  }
+});
+
+['repPartners','repAvg'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('change', () => {
+      const r = document.getElementById('repResultGrid');
+      if (r && r.style.display !== 'none') randomizeRepeats();
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  setUpMode('triangle');
+  updatePartnersHint();
+});
+</script>
+
+</body>
+</html>
