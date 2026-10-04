@@ -81,10 +81,8 @@
   .section h2 .i { stroke: var(--action); width: 30px; height: 30px; flex-shrink: 0; }
   .calc-upgrade { margin-top: 40px; padding: 32px; background: linear-gradient(150deg, #0B2545 0%, #071A33 100%); border: 2px solid var(--action); border-radius: 20px; color: #fff; box-shadow: 0 20px 50px rgba(11,37,69,0.35); position: relative; overflow: hidden; }
   .calc-upgrade::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: linear-gradient(180deg, #E85D04, #b84700); }
-  .calc-upgrade-title { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 20px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: #E85D04; text-align: center; margin-bottom: 8px; }
+  .calc-upgrade-title { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 20px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: #E85D04; text-align: center; margin-bottom: 22px; }
   .calc-upgrade-title .i { width: 26px; height: 26px; stroke: #E85D04; }
-  .calc-upgrade-sub { text-align: center; font-size: 13.5px; color: #F7F4EA; margin-bottom: 24px; line-height: 1.75; }
-  .calc-upgrade-sub b { color: #FF8C42; font-weight: 900; }
   .step-label-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(232,93,4,0.14); border: 1px solid rgba(232,93,4,0.55); border-radius: 100px; color: #E85D04; font-size: 11px; font-weight: 800; letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 8px; }
   .step-label-btn .i { width: 14px; height: 14px; stroke: #E85D04; }
   .calc-upgrade-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 18px; }
@@ -112,7 +110,7 @@
   .up-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed rgba(232,93,4,0.5); text-align: center; }
   .up-split-item .lbl { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(247,244,234,0.85); font-weight: 700; margin-bottom: 6px; }
   .up-split-item .val { font-size: 20px; font-weight: 900; background: linear-gradient(135deg, #ffffff, #F7F4EA, #E85D04); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .up-note { margin-top: 14px; font-size: 12.5px; color: #F7F4EA; line-height: 1.8; text-align: center; }
+  .up-note { margin-top: 14px; font-size: 12.5px; color: #F7F4EA; line-height: 1.8; text-align: center; }
   .up-note b { color: #FF8C42; font-weight: 900; }
   table.up-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 700px; }
   table.up-table th, table.up-table td { padding: 10px 12px; text-align: right; border-bottom: 1px solid rgba(232,93,4,0.2); white-space: nowrap; color: #F7F4EA; }
@@ -147,7 +145,7 @@
   .pdf-actions-row .gold-btn.alt:hover { border-color: #FFB870; }
   .up-pdf-hint { font-size: 11.5px; color: rgba(247,244,234,0.7); text-align: center; line-height: 1.6; margin-top: 10px; }
 
-    .up-disclaimer {
+  .up-disclaimer {
     display: flex;
     align-items: flex-start;
     gap: 12px;
@@ -166,7 +164,7 @@
   .rep-block { margin-top: 28px; padding: 26px; background: linear-gradient(150deg, rgba(232,93,4,0.10), rgba(184,71,0,0.18)); border: 2px dashed var(--action); border-radius: 18px; }
   .rep-block-title { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 17px; font-weight: 900; letter-spacing: 1.2px; text-transform: uppercase; color: #E85D04; text-align: center; margin-bottom: 8px; }
   .rep-block-title .i { width: 22px; height: 22px; stroke: #E85D04; }
-    .rep-block-sub { text-align: center; font-size: 13px; color: #F7F4EA; margin-bottom: 20px; line-height: 1.75; }
+  .rep-block-sub { text-align: center; font-size: 13px; color: #F7F4EA; margin-bottom: 20px; line-height: 1.75; }
   .rep-block-sub b { color: #FF8C42; font-weight: 900; }
   .rep-controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 18px; }
   .rep-controls .premium-input, .rep-controls .premium-select { background: rgba(247,244,234,0.08); border: 1px solid rgba(232,93,4,0.45); color: #F7F4EA; width: 100%; padding: 10px 14px; border-radius: 10px; font-family: inherit; font-size: 14px; }
@@ -175,12 +173,13 @@
   .rep-random-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 12px; font-family: inherit; font-weight: 900; font-size: 13px; letter-spacing: 0.8px; text-transform: uppercase; color: #fff; background: linear-gradient(135deg, #ffb870 0%, #E85D04 40%, #b84700 100%); border: none; cursor: pointer; box-shadow: 0 10px 26px rgba(232,93,4,0.5); transition: all 0.25s; }
   .rep-random-btn .i { stroke: #fff; width: 18px; height: 18px; }
   .rep-random-btn:hover { transform: translateY(-2px); }
-  .rep-result-grid { margin-top: 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; text-align: center; }
+  .rep-result-grid { margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; text-align: center; }
   .rep-res-item .lbl { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(247,244,234,0.85); font-weight: 700; margin-bottom: 6px; }
   .rep-res-item .val { font-size: 22px; font-weight: 900; background: linear-gradient(135deg, #ffffff, #F7F4EA, #E85D04); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .rep-res-item.hl .val { font-size: 26px; }
-    .rep-note { margin-top: 14px; font-size: 12.5px; text-align: center; color: #F7F4EA; line-height: 1.8; }
+  .rep-note { margin-top: 14px; font-size: 12.5px; text-align: center; color: #F7F4EA; line-height: 1.8; }
   .rep-note b { color: #FF8C42; font-weight: 900; }
+
   .rules-block { margin-top: 22px; padding: 22px 26px; background: rgba(232,93,4,0.12); border-left: 4px solid var(--action); border-radius: 12px; color: #F7F4EA; font-size: 13.5px; line-height: 1.85; }
   .rules-block .r-title { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: #FF8C42; margin-bottom: 12px; }
   .rules-block .r-title .i { width: 18px; height: 18px; stroke: #FF8C42; }
@@ -345,7 +344,6 @@
     .qual-turnover, .qual-bonus { font-size: 12.5px; }
     .calc-upgrade { padding: 18px 12px; border-radius: 16px; margin-top: 24px; }
     .calc-upgrade-title { font-size: 15px; }
-    .calc-upgrade-sub { font-size: 11.5px; margin-bottom: 16px; }
     .calc-upgrade-grid { grid-template-columns: 1fr !important; gap: 10px; }
     .up-mode-toggle { gap: 8px; }
     .up-mode-btn { padding: 10px 14px; font-size: 11.5px; }
@@ -532,8 +530,6 @@
     .calc-upgrade::before { background: var(--print-gold-1) !important; }
     .calc-upgrade-title { color: var(--print-gold-1) !important; font-size: 12px !important; }
     .calc-upgrade-title .i { width: 14px !important; height: 14px !important; stroke: var(--print-gold-1) !important; }
-    .calc-upgrade-sub { color: var(--print-ink) !important; font-size: 9.5px !important; margin-bottom: 8px !important; }
-    .calc-upgrade-sub b { color: var(--print-gold-2) !important; }
 
     table.up-table {
       border: 1.6px solid var(--print-gold-1) !important;
@@ -631,7 +627,7 @@
     .rep-block-title { color: var(--print-gold-2) !important; font-size: 11px !important; margin-bottom: 4px !important; }
     .rep-block-sub { color: var(--print-ink) !important; font-size: 9.5px !important; margin-bottom: 8px !important; }
     .rep-block-sub b { color: var(--print-gold-2) !important; }
-    .rep-result-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 6px !important; margin-top: 0 !important; }
+    .rep-result-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; margin-top: 0 !important; }
     .rep-res-item .lbl { color: var(--print-ink) !important; font-size: 8.5px !important; }
     .rep-res-item .val {
       -webkit-text-fill-color: var(--print-gold-2) !important;
@@ -828,7 +824,7 @@
   <div class="section" data-section="packages">
     <div class="section-tag"><svg class="i"><use href="#ic-diamond"/></svg>Схема входа · ХИТ ПРОДАЖ</div>
     <h2><svg class="i"><use href="#ic-diamond"/></svg>Золотой треугольник · 1500 PV</h2>
-    <p>Три личных кабинета на одного человека: <b>«Голова»</b> — основной кабинет, внизу два дополнительных: <b>«ЛП»</b> и <b>«ПП»</b>.</p>
+    <p>Три личных кабинета на одного человека: <b>Голова</b> — основной кабинет, внизу два дополнительных: <b>Левое плечо (ЛП)</b> и <b>Правое плечо (ПП)</b>.</p>
     <div class="triangle-wrap">
       <div class="triangle-visual">
         <svg class="triangle-lines" viewBox="0 0 340 260" preserveAspectRatio="none">
@@ -847,7 +843,7 @@
       <div class="formula">3 кабинета по 500 PV</div>
     </div>
     <div class="note">
-      <div>После оплаты на бонусный счёт возвращается <b>100% от потраченной суммы кэшбэком</b>.</div>
+      <div>После оплаты <b>100% от потраченной суммы возвращается кэшбэком</b> на бонусный счёт.</div>
     </div>
   </div>
 
@@ -897,12 +893,6 @@
         <svg class="i"><use href="#ic-rocket"/></svg>
         Расчёт по уровням
       </div>
-      <div class="calc-upgrade-sub">
-        <b>Степ</b> = 50% × min(мин. пакет слева, мин. пакет справа).<br>
-        <b>Бинар</b> = 10% × min(остаток слева, остаток справа) — после вычета степа.<br>
-        <b>Лимит кабинета</b> = пакет кабинета. Красным — бинар, обрезанный лимитом.<br>
-        <b>Партнёры</b> округляются вниз до чётного числа — если введено нечётное, в расчёт идёт <b>(X − 1)</b>.
-      </div>
 
       <div class="up-mode-toggle">
         <button class="up-mode-btn active" data-up-mode="single" onclick="setUpMode('single')">
@@ -933,26 +923,6 @@
           <div>
             <label class="step-label-btn"><svg class="i"><use href="#ic-tree"/></svg>Уровней для расчёта</label>
             <input type="number" id="upDepth" value="12" min="1" max="31" step="1" class="premium-input">
-          </div>
-        </div>
-        <div class="calc-upgrade-grid" style="margin-top:6px;">
-          <div>
-            <label class="step-label-btn"><svg class="i"><use href="#ic-arrow-up"/></svg>Мой апгрейд до $</label>
-            <select id="upNewPkg" class="premium-select">
-              <option value="500" selected>$500</option>
-              <option value="2000">$2000</option>
-            </select>
-          </div>
-          <div>
-            <label class="step-label-btn"><svg class="i"><use href="#ic-crown"/></svg>С какого уровня</label>
-            <input type="number" id="upLvl" value="4" min="1" max="31" step="1" class="premium-input">
-          </div>
-          <div>
-            <label class="step-label-btn"><svg class="i"><use href="#ic-check"/></svg>Учитывать апгрейд</label>
-            <label style="margin-top:14px; color:#F7F4EA;">
-              <input type="checkbox" id="upEnabledSingle" checked>
-              <span style="color:#F7F4EA;">Вкл / выкл</span>
-            </label>
           </div>
         </div>
       </div>
@@ -991,51 +961,6 @@
           </div>
           <div></div>
           <div></div>
-        </div>
-        <div class="calc-upgrade-grid" style="grid-template-columns: repeat(3, 1fr); background: rgba(247,244,234,0.05); padding: 14px; border-radius: 12px; margin-bottom: 18px;">
-          <div style="grid-column: 1 / -1; text-align: center; font-size: 12px; color: #E85D04; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">
-            Апгрейд моих кабинетов
-          </div>
-          <div>
-            <label class="step-label-btn"><svg class="i"><use href="#ic-crown"/></svg>Голова → до $</label>
-            <select id="upHeadNewPkg" class="premium-select">
-              <option value="500" selected>$500</option>
-              <option value="2000">$2000</option>
-            </select>
-          </div>
-          <div>
-            <label class="step-label-btn"><svg class="i"><use href="#ic-diamond"/></svg>ЛП → до $</label>
-            <select id="upSideLeftNewPkg" class="premium-select">
-              <option value="500" selected>$500</option>
-              <option value="2000">$2000</option>
-            </select>
-          </div>
-          <div>
-            <label class="step-label-btn"><svg class="i"><use href="#ic-diamond"/></svg>ПП → до $</label>
-            <select id="upSideRightNewPkg" class="premium-select">
-              <option value="500" selected>$500</option>
-              <option value="2000">$2000</option>
-            </select>
-          </div>
-          <div>
-            <label class="step-label-btn"><svg class="i"><use href="#ic-crown"/></svg>Ур. апгрейда головы</label>
-            <input type="number" id="upHeadLvl" value="4" min="1" max="31" step="1" class="premium-input">
-          </div>
-          <div>
-            <label class="step-label-btn"><svg class="i"><use href="#ic-diamond"/></svg>Ур. апгрейда ЛП</label>
-            <input type="number" id="upSideLeftLvl" value="4" min="1" max="31" step="1" class="premium-input">
-          </div>
-          <div>
-            <label class="step-label-btn"><svg class="i"><use href="#ic-diamond"/></svg>Ур. апгрейда ПП</label>
-            <input type="number" id="upSideRightLvl" value="4" min="1" max="31" step="1" class="premium-input">
-          </div>
-          <div style="grid-column: 1 / -1;">
-            <label class="step-label-btn"><svg class="i"><use href="#ic-check"/></svg>Учитывать апгрейд</label>
-            <label style="margin-top:8px; color:#F7F4EA;">
-              <input type="checkbox" id="upEnabled" checked>
-              <span style="color:#F7F4EA;">Вкл / выкл</span>
-            </label>
-          </div>
         </div>
       </div>
 
@@ -1111,23 +1036,17 @@
           </div>
         </div>
 
-        <div class="table-footnote" style="margin-top:12px;">
-          <b>Степ</b> = 50% × min(мин. пакет слева, мин. пакет справа).<br>
-          <b>Бинар</b> = 10% × min(остаток слева, остаток справа) после степа.<br>
-          <b>Кэшбэк 20%</b> — на бонусный счёт, <b>80%</b> — на карту.<br>
-          <b>Красным</b> выделен бинар, обрезанный лимитом кабинета.
-        </div>
-
         <div class="rules-block">
           <div class="r-title"><svg class="i"><use href="#ic-info"/></svg>Правила расчёта</div>
           <ol>
-            <li><b>1 уровень</b> — пара ЛП / ПП. Голова получает степ = 50% × min(пакет ЛП, пакет ПП).</li>
-            <li><b>Со 2 уровня</b> у головы платится степ + бинар. У плеч — тоже, если есть пара.</li>
-            <li><b>Партнёры</b> повторяют структуру треугольника: чётные уровни — головы (пакет головы), нечётные — парами [пакет ЛП, пакет ПП].</li>
-            <li><b>Степ</b> = 50% × min(минимальный пакет слева, минимальный пакет справа).</li>
-            <li><b>Бинар</b> = 10% × min(остаток слева, остаток справа) после вычета степа.</li>
+            <li><b>1 уровень</b> — пара ЛП / ПП. Голова получает степ.</li>
+            <li><b>Со 2 уровня</b> у головы платится степ + бинар. У плеч — степ.</li>
+            <li><b>С 3 уровня</b> у головы платится степ + бинар. У плеч — степ + бинар.</li>
+            <li><b>Степ</b> = 50% × min(мин. пакет слева, мин. пакет справа).<br>
+            <li><b>Бинар</b> = 10% × min(остаток слева, остаток справа) после степа.<br>
+            <li><b>Кэшбэк 20%</b> — на бонусный счёт, <b>80%</b> — на карту.<br>
+            <li><b>Красным</b> выделен бинар, обрезанный лимитом кабинета.
             <li><b>Лимит</b> = пакет моего кабинета. Если степ + бинар больше лимита — излишек теряется.</li>
-            <li><b>Кэшбэк 20%</b> от суммы на счёт — на бонусный счёт, <b>80%</b> — на карту.</li>
             <li><b>Партнёры округляются вниз до чётного</b>: если введено нечётное X, в расчёт идёт (X − 1).</li>
           </ol>
         </div>
@@ -1138,8 +1057,7 @@
             Калькулятор ТО от повторных покупок
           </div>
           <div class="rep-block-sub">
-            5% от ТО повторных покупок ваших партнёров. Минимум <b>30 PV</b>.<br>
-            Кэшбэк 20% — на бонусный счёт, 80% — на карту.
+            5% от ТО повторных покупок ваших партнёров. Минимум <b>30 PV</b>.
           </div>
 
           <div class="rep-controls">
@@ -1161,7 +1079,6 @@
           </div>
 
           <div class="rep-result-grid" id="repResultGrid" style="display:none;">
-            <div class="rep-res-item"><div class="lbl">Уровней с повторками</div><div class="val" id="rep-lvl-count">0</div></div>
             <div class="rep-res-item"><div class="lbl">Всего партнёров</div><div class="val" id="rep-total-cab">0</div></div>
             <div class="rep-res-item"><div class="lbl">Оборот повторок</div><div class="val" id="rep-turnover">$0</div></div>
             <div class="rep-res-item hl"><div class="lbl">5% доход</div><div class="val" id="rep-income">$0</div></div>
@@ -1367,21 +1284,21 @@
         <text x="810" y="350" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">П4</text>
 
         <circle cx="140" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
-        <text x="140" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П5</text>
+        <text x="140" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П1Л</text>
         <circle cx="240" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
-        <text x="240" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П6</text>
+        <text x="240" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П1П</text>
         <circle cx="340" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
-        <text x="340" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П7</text>
+        <text x="340" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П2Л</text>
         <circle cx="440" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
-        <text x="440" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П8</text>
+        <text x="440" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П2П</text>
         <circle cx="560" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
-        <text x="560" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П9</text>
+        <text x="560" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П3Л</text>
         <circle cx="660" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
-        <text x="660" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П10</text>
+        <text x="660" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П3П</text>
         <circle cx="740" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
-        <text x="740" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П11</text>
+        <text x="740" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П4Л</text>
         <circle cx="850" cy="460" r="22" fill="url(#gNodeSmall)" stroke="#fff" stroke-width="1.5"/>
-        <text x="850" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П12</text>
+        <text x="850" y="465" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">П4П</text>
 
         <rect x="100" y="520" width="880" height="42" rx="21" fill="url(#gBar)" stroke="#c4d8ef" stroke-dasharray="3 3"/>
         <text x="540" y="547" text-anchor="middle" font-size="11" font-weight="800" fill="#0B2545" letter-spacing="1.4">LEVEL 4 · 16 КАБИНЕТОВ · 500 PV</text>
@@ -1506,10 +1423,6 @@ function setUpMode(mode) {
 
 const REPEAT_SHARE = 0.20, REPEAT_RATE = 0.05;
 
-function pkgAtLevel(basePkg, newPkg, upLvl, upEnabled, lvl) {
-  return (upEnabled && lvl >= upLvl) ? Math.max(basePkg, newPkg) : basePkg;
-}
-
 function safeMin(arr) {
   let m = Infinity;
   for (let i = 0; i < arr.length; i++) {
@@ -1555,12 +1468,13 @@ function partnerList(lvl, count, headPkg, sideLeftPkg, sideRightPkg) {
 }
 
 function countsOnLevel(lvl) {
-  if (lvl < 2) return { head: 0, side: 0 };
+  if (lvl === 1) return { head: 1, side: 0, cabinets: 2 };
   const head = Math.pow(2, lvl - 1);
   const side = Math.pow(2, lvl - 2);
   return {
     head: Number.isFinite(head) ? head : 1e15,
-    side: Number.isFinite(side) ? side : 1e15
+    side: Number.isFinite(side) ? side : 1e15,
+    cabinets: Number.isFinite(head * 2) ? head * 2 : 1e15
   };
 }
 
@@ -1573,9 +1487,9 @@ function calcTriangle(d) {
 
   for (let lvl = 1; lvl <= d.depth; lvl++) {
     const c = countsOnLevel(lvl);
-    const headPkg = pkgAtLevel(d.headBase, d.headNew, d.headUpLvl, d.upEnabled, lvl);
-    const leftPkg = pkgAtLevel(d.sideLeftBase, d.sideLeftNew, d.sideLeftUpLvl, d.upEnabled, lvl);
-    const rightPkg = pkgAtLevel(d.sideRightBase, d.sideRightNew, d.sideRightUpLvl, d.upEnabled, lvl);
+    const headPkg = d.headBase;
+    const leftPkg = d.sideLeftBase;
+    const rightPkg = d.sideRightBase;
 
     let headRes;
     if (lvl === 1) headRes = calcNode([leftPkg], [rightPkg], headPkg, false);
@@ -1610,7 +1524,7 @@ function calcTriangle(d) {
     tRightStep += rightRes.step; tRightBin += rightRes.bin;
 
     rows.push({
-      lvl, cabinets: Math.min(c.head * 2, 1e15),
+      lvl, cabinets: c.cabinets,
       headStep: headRes.step, headBin: headRes.bin, headBinLost: headRes.binLost,
       leftStep: leftRes.step, leftBin: leftRes.bin, leftBinLost: leftRes.binLost,
       rightStep: rightRes.step, rightBin: rightRes.bin, rightBinLost: rightRes.binLost,
@@ -1628,7 +1542,7 @@ function calcSingle(d) {
   const partnersEven = normalizePartners(d.partners);
 
   for (let lvl = 1; lvl <= d.depth; lvl++) {
-    const myPkg = pkgAtLevel(d.myBase, d.myNew, d.upLvl, d.upEnabled, lvl);
+    const myPkg = d.myBase;
     const mult = Math.pow(2, lvl - 1);
     const cabRaw = partnersEven * mult;
     const cab = Number.isFinite(cabRaw) ? cabRaw : 1e15;
@@ -1717,15 +1631,12 @@ function calcUpgrade() {
     const partnersEven = normalizePartners(rawPartners);
     const d = {
       myBase: +document.getElementById('upBasePkg').value || 500,
-      myNew: +document.getElementById('upNewPkg').value || 500,
-      upLvl: Math.max(1, Math.min(31, +document.getElementById('upLvl').value || 4)),
       partners: partnersEven,
-      depth: Math.max(1, Math.min(31, +document.getElementById('upDepth').value || 6)),
-      upEnabled: document.getElementById('upEnabledSingle').checked
+      depth: Math.max(1, Math.min(31, +document.getElementById('upDepth').value || 6))
     };
     result = calcSingle(d);
     modeLabel = 'Один кабинет';
-    pkgLabel = 'Пакет $' + d.myBase + (d.upEnabled ? ' → $' + d.myNew + ' с ' + d.upLvl + '-го ур.' : '');
+    pkgLabel = 'Пакет $' + d.myBase;
     if (rawPartners !== partnersEven) {
       pkgLabel += ' · партнёров: <b>' + rawPartners + ' → ' + partnersEven + '</b> (округлено до чётного)';
     }
@@ -1734,14 +1645,7 @@ function calcUpgrade() {
       headBase: +document.getElementById('upHeadPkg').value || 500,
       sideLeftBase: +document.getElementById('upSideLeftPkg').value || 250,
       sideRightBase: +document.getElementById('upSideRightPkg').value || 500,
-      headNew: +document.getElementById('upHeadNewPkg').value || 500,
-      sideLeftNew: +document.getElementById('upSideLeftNewPkg').value || 500,
-      sideRightNew: +document.getElementById('upSideRightNewPkg').value || 500,
-      headUpLvl: Math.max(1, Math.min(31, +document.getElementById('upHeadLvl').value || 4)),
-      sideLeftUpLvl: Math.max(1, Math.min(31, +document.getElementById('upSideLeftLvl').value || 4)),
-      sideRightUpLvl: Math.max(1, Math.min(31, +document.getElementById('upSideRightLvl').value || 4)),
-      depth: Math.max(1, Math.min(31, +document.getElementById('upTriDepth').value || 9)),
-      upEnabled: document.getElementById('upEnabled').checked
+      depth: Math.max(1, Math.min(31, +document.getElementById('upTriDepth').value || 9))
     };
     result = calcTriangle(d);
     modeLabel = 'Золотой треугольник';
@@ -1937,18 +1841,15 @@ function printTableOnly() {
 function calcRepeats() {
   const N = Math.max(0, +document.getElementById('repPartners').value || 0);
   const avg = Math.max(30, +document.getElementById('repAvg').value || 30);
-  const levelsCount = 9;
 
   const turnover = N * avg * REPEAT_SHARE;
   const income = turnover * REPEAT_RATE;
 
-  document.getElementById('rep-lvl-count').textContent = levelsCount;
   document.getElementById('rep-total-cab').textContent  = Math.round(N).toLocaleString('ru-RU');
   document.getElementById('rep-turnover').textContent   = fmt(turnover);
   document.getElementById('rep-income').textContent     = fmt(income);
 
   document.getElementById('repNote').innerHTML =
-    'Уровней с повторными покупками: <b>' + levelsCount + '</b>. ' +
     'Партнёров: <b>' + Math.round(N).toLocaleString('ru-RU') + '</b>, сумма повторки: <b>' + avg + ' PV</b>.<br>' +
     'Формула: <b>' + Math.round(N).toLocaleString('ru-RU') + ' × ' + avg + ' PV × 20% × 5%</b> = <b>' + fmt(income) + '</b>.';
 
@@ -1961,10 +1862,8 @@ function randomizeRepeats() {
 }
 
 [
-  'upBasePkg','upPartners','upDepth','upNewPkg','upLvl','upEnabledSingle',
-  'upHeadPkg','upSideLeftPkg','upSideRightPkg','upTriDepth',
-  'upHeadNewPkg','upSideLeftNewPkg','upSideRightNewPkg',
-  'upHeadLvl','upSideLeftLvl','upSideRightLvl','upEnabled'
+  'upBasePkg','upPartners','upDepth',
+  'upHeadPkg','upSideLeftPkg','upSideRightPkg','upTriDepth'
 ].forEach(id => {
   const el = document.getElementById(id);
   if (el) {
